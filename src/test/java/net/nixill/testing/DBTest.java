@@ -4,10 +4,17 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+import com.github.theoakemontrainers.oakedex.dblookups.Lookup;
+
 import net.nixill.databases.DBConnection;
 
 public class DBTest {
   public static void main(String[] args) {
+    // test1();
+    test2();
+  }
+  
+  public static void test1() {
     DBConnection conn = new DBConnection("pokedex.db");
     
     // test getList()
@@ -38,6 +45,17 @@ public class DBTest {
     for (Entry<Object, Object> ent : map.entrySet()) {
       System.out.println(
           ent.getKey().toString() + ": " + ent.getValue().toString());
+    }
+  }
+  
+  public static void test2() {
+    DBConnection conn = new DBConnection("pokedex.db");
+    Lookup look = new Lookup(conn);
+    
+    ArrayList<Integer> ints = look.getResults("*eon");
+    
+    for (Integer i : ints) {
+      System.out.println(i);
     }
   }
 }
