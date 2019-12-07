@@ -17,13 +17,15 @@ public class OakEntry extends JFrame implements ActionListener {
    private Container frame = getContentPane();
    
    private JMenuBar menuBar;
-   private JMenu menuBack;
-   private JMenuItem itemResults, itemSearch, itemMenu, itemExit;
+   private JMenu menuBack, menuScreen;
+   private JMenuItem itemResults, itemSearch, itemMenu, itemExit, itemFull, itemExitFull;
    
    private JLabel lblName, lblNum, lblType1, lblType2, lblGender,
          lblGeneration, lblRegion;
    private JLabel LBLSTAT, LBLABILITY;
    private JTable statTable, abilityTable;
+   
+   private String statVal1, statVal2, statVal3, statVal4, ability1, ability2, ability3;
    
    private JFileChooser fileChooser = new JFileChooser();
    
@@ -32,14 +34,15 @@ public class OakEntry extends JFrame implements ActionListener {
    
    public static void main(String[] args) {
       OakEntry page = new OakEntry();
-      page.setSize(500, 500);
       page.setVisible(true);
-      page.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      
    }
    
    public OakEntry() {
-      setTitle("Pok�mon Entry");
-      frame.setLayout(new FlowLayout());
+	  setExtendedState(JFrame.MAXIMIZED_BOTH);
+	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	  setTitle("Pokemon Entry");
+      frame.setLayout(new GridLayout());
       
       // ---------- Menu Bar ------------\\
       
@@ -68,6 +71,35 @@ public class OakEntry extends JFrame implements ActionListener {
       menuBack.add(itemExit);
       itemExit.addActionListener(this);
       
+      menuScreen = new JMenu("Screen");
+      menuBar.add(menuScreen);
+      
+      itemFull = new JMenuItem("Enter Fullscreen");
+      menuScreen.add(itemFull);
+      itemFull.addActionListener(new ActionListener()
+    		  {
+    	  		public void actionPerformed(ActionEvent ae) 
+	  			{
+    	  			dispose();
+    	  			setExtendedState(JFrame.MAXIMIZED_BOTH);
+	  				setUndecorated(true);
+	  				setVisible(true);
+	  			}
+    		  });
+      
+      itemExitFull = new JMenuItem("Exit Fullscreen");
+      menuScreen.add(itemExitFull);
+      itemExitFull.addActionListener(new ActionListener()
+    		  {
+    	  		public void actionPerformed(ActionEvent ae) 
+    	  		{
+    	  			dispose();
+    	  			setExtendedState(JFrame.MAXIMIZED_BOTH);
+    	  			setUndecorated(false);
+    	  			setVisible(true);
+    	  		}
+    		  });
+      
       // ----------- Other ------------\\
       
       lblName = new JLabel("Name");
@@ -86,11 +118,13 @@ public class OakEntry extends JFrame implements ActionListener {
       
       LBLSTAT = new JLabel("Base Stats:");
       frame.add(LBLSTAT);
-      String[][] data = { { "stat1", "value" }, { "stat2", "value" },
-         { "etc.", "etc." } };
-      String[] colHeads = { "stat", "value" };
+      String[][] data = { { "Strength", statVal1 }, { "Defense", statVal2 },		// I don't know what stats we're going to display.
+         { "etc.", "etc." } };														// As soon as I do, I can update this.
+      String[] colHeads = { "Stat", "Value" };
       statTable = new JTable(data, colHeads);
-      frame.add(statTable);
+      JScrollPane statPane = new JScrollPane(statTable);
+      statTable.setFillsViewportHeight(true);
+      frame.add(statPane, BorderLayout.CENTER);
       
       lblGender = new JLabel("(gender ratio)");
       frame.add(lblGender);
@@ -100,15 +134,25 @@ public class OakEntry extends JFrame implements ActionListener {
       
       LBLABILITY = new JLabel("Abilities:");
       frame.add(LBLABILITY);
-      String[][] dataAbility = { { "ability", "hidden" },
-         { "ability", "hidden" }, { "ability", "" } };
+      String[][] dataAbility = { { ability1, ability3 },
+         { ability2, "" } };
       String[] abilityColHeads = { "Ability", "Hidden" };
-      abilityTable = new JTable(dataAbility, colHeads);
-      frame.add(abilityTable);
+      abilityTable = new JTable(dataAbility, abilityColHeads);
+      JScrollPane abilityPane = new JScrollPane(abilityTable);
+      abilityTable.setFillsViewportHeight(true);
+      frame.add(abilityPane);
       
       lblRegion = new JLabel("Region");
-      frame.add(lblRegion);
+      frame.add(lblRegion);  
       
+      //------------ Set Data ------------------\\
+      setGUI();
+   }
+   
+   public void setGUI()
+   {
+	   //This is where we set the text for the pokemon's data when the page is opened.
+	   //I just don't know the object name or variable names yet, so I can't really fill this out at the moment.
    }
    
    public void actionPerformed(ActionEvent ae) {
