@@ -27,6 +27,8 @@ public class OakEntry extends JFrame implements ActionListener {
    
    private String statVal1, statVal2, statVal3, statVal4, ability1, ability2, ability3;
    
+   private GridLayout entryLayout = new GridLayout(0, 4, 20, 0);
+   
    private JFileChooser fileChooser = new JFileChooser();
    
    private DataInputStream dataIn;
@@ -42,7 +44,7 @@ public class OakEntry extends JFrame implements ActionListener {
 	  setExtendedState(JFrame.MAXIMIZED_BOTH);
 	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  setTitle("Pokemon Entry");
-      frame.setLayout(new GridLayout());
+      frame.setLayout(entryLayout);
       
       // ---------- Menu Bar ------------\\
       
@@ -102,50 +104,67 @@ public class OakEntry extends JFrame implements ActionListener {
       
       // ----------- Other ------------\\
       
+      blankCell();
+      
       lblName = new JLabel("Name");
       frame.add(lblName);
       
       lblNum = new JLabel("Number");
       frame.add(lblNum);
       
+      blankCell();
+      blankCell();
+      
       lblType1 = new JLabel("Type1");
       frame.add(lblType1);
       
-      lblType2 = new JLabel("(Type2)"); // Remove default text later to
-                                        // avoid displaying 'Type2' for
-                                        // Pokemon with no second type
+      lblType2 = new JLabel("(type2)");
       frame.add(lblType2);
       
-      LBLSTAT = new JLabel("Base Stats:");
-      frame.add(LBLSTAT);
+      blankCell();
+      blankCell();
+      
+      //LBLSTAT = new JLabel("Base Stats:");
+      //frame.add(LBLSTAT);
       String[][] data = { { "Strength", statVal1 }, { "Defense", statVal2 },		// I don't know what stats we're going to display.
          { "etc.", "etc." } };														// As soon as I do, I can update this.
       String[] colHeads = { "Stat", "Value" };
       statTable = new JTable(data, colHeads);
       JScrollPane statPane = new JScrollPane(statTable);
-      statTable.setFillsViewportHeight(true);
+      statPane.setBorder(BorderFactory.createEmptyBorder());
       frame.add(statPane, BorderLayout.CENTER);
       
-      lblGender = new JLabel("(gender ratio)");
-      frame.add(lblGender);
-      
-      lblGeneration = new JLabel("generation");
-      frame.add(lblGeneration);
-      
-      LBLABILITY = new JLabel("Abilities:");
-      frame.add(LBLABILITY);
+    //LBLABILITY = new JLabel("Abilities:");
+      //frame.add(LBLABILITY);
       String[][] dataAbility = { { ability1, ability3 },
          { ability2, "" } };
       String[] abilityColHeads = { "Ability", "Hidden" };
       abilityTable = new JTable(dataAbility, abilityColHeads);
       JScrollPane abilityPane = new JScrollPane(abilityTable);
-      abilityTable.setFillsViewportHeight(true);
+      abilityPane.setBorder(BorderFactory.createEmptyBorder());
       frame.add(abilityPane);
       
-      lblRegion = new JLabel("Region");
+      blankCell();
+      blankCell();
+      
+      lblGender = new JLabel("Gender Ratio: ");
+      frame.add(lblGender);
+      
+      lblGeneration = new JLabel("Generation:");
+      frame.add(lblGeneration);
+      
+      blankCell();
+      blankCell();
+      
+      lblRegion = new JLabel("Region: ");
       frame.add(lblRegion);  
       
+      frame.add(new JLabel());
+      
+      blankCell();
+      
       //------------ Set Data ------------------\\
+      
       setGUI();
    }
    
@@ -153,6 +172,13 @@ public class OakEntry extends JFrame implements ActionListener {
    {
 	   //This is where we set the text for the pokemon's data when the page is opened.
 	   //I just don't know the object name or variable names yet, so I can't really fill this out at the moment.
+   }
+   
+   public void blankCell()
+   {
+	   JPanel blank = new JPanel();
+	   blank.setBackground(new Color(102, 102, 102));
+	   frame.add(blank);
    }
    
    public void actionPerformed(ActionEvent ae) {
@@ -206,65 +232,4 @@ public class OakEntry extends JFrame implements ActionListener {
          }
       }
    }
-   
-   /*
-    * Yes, I have this whole class as an example. You have no idea how much
-    * of this topic I forgot. At least I cut out a lot of the functions.
-    * public class ProcessRec extends JDialog {
-    * 
-    * private JButton btnins, btndel, btndis, btnhid; private JTextField
-    * txttool, txtid, txtprice, txtqual, txtstock, txtmes; private JLabel
-    * lbltitle, lbltool, lblid, lblprice, lblqual, lblstock, lblmes; public
-    * String messageout[] = new String[10]; private JLabel lblmes2[] = new
-    * JLabel[10]; private Font f1 = new Font("serif", Font.BOLD, 24);
-    * private Font f2 = new Font("serif", Font.PLAIN, 20); private Font f3
-    * = new Font("serif", Font.PLAIN, 10); private Container frame =
-    * getContentPane(); private Tools tools = new Tools();
-    * 
-    * 
-    * public static void main(String[] args) { ProcessRec timframe = new
-    * ProcessRec(); timframe.setSize(450,750); timframe.setVisible(true);
-    * timframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); }
-    * 
-    * 
-    * 
-    * public ProcessRec() { setTitle("Tim's Tools"); this.setSize(425,750);
-    * frame.setLayout(new FlowLayout());
-    * 
-    * lbltitle = new JLabel("Tiny Tim's Tool Warehouse, Inc.");
-    * lbltitle.setFont(f1); frame.add(lbltitle); lbltool = new
-    * JLabel("Enter ToolName:"); lbltool.setFont(f2); frame.add(lbltool);
-    * txttool = new JTextField(30); frame.add(txttool); lblid = new
-    * JLabel("Enter ID:    "); lblid.setFont(f2); frame.add(lblid); txtid =
-    * new JTextField(30); frame.add(txtid); lblprice = new
-    * JLabel("BasePrice:"); lblprice.setFont(f2); frame.add(lblprice);
-    * txtprice = new JTextField(30); frame.add(txtprice); lblqual = new
-    * JLabel("Enter Quality:"); lblqual.setFont(f2); frame.add(lblqual);
-    * txtqual = new JTextField(30); frame.add(txtqual); lblstock = new
-    * JLabel("Enter NumberInStock:"); lblstock.setFont(f2);
-    * frame.add(lblstock); txtstock = new JTextField(30);
-    * frame.add(txtstock); btnins = new JButton("Insert");
-    * btnins.setPreferredSize(new Dimension(85, 25)); frame.add(btnins);
-    * btndel = new JButton("Delete"); btndel.setPreferredSize(new
-    * Dimension(85, 25)); frame.add(btndel); btndis = new
-    * JButton("Display"); btndis.setPreferredSize(new Dimension(85, 25));
-    * frame.add(btndis); btnhid = new JButton("Hide");
-    * btnhid.setPreferredSize(new Dimension(85, 25)); frame.add(btnhid);
-    * lblmes = new JLabel("Messages:     "); lblmes.setFont(f2);
-    * frame.add(lblmes); txtmes = new JTextField(30); frame.add(txtmes);
-    * 
-    * for (int i = 0; i < 10; i++) { lblmes2[i] = new JLabel("");
-    * lblmes2[i].setFont(f3); frame.add(lblmes2[i]); }
-    * 
-    * ActionHandler ahandle = new ActionHandler();
-    * txttool.addActionListener(ahandle); txtid.addActionListener(ahandle);
-    * txtprice.addActionListener(ahandle);
-    * txtqual.addActionListener(ahandle);
-    * txtstock.addActionListener(ahandle);
-    * txtmes.addActionListener(ahandle); btnins.addActionListener(ahandle);
-    * btndel.addActionListener(ahandle); btndis.addActionListener(ahandle);
-    * btnhid.addActionListener(ahandle);
-    * 
-    * ItemHandler ihandle = new ItemHandler(); }
-    */
 }
