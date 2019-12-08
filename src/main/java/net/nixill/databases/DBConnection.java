@@ -88,6 +88,56 @@ public class DBConnection {
   }
   
   /**
+   * Runs a query and returns the whole thing using Strings.
+   * <p>
+   * Each {@link HashMap} is one row, as described in
+   * {@link #getStringRow(String)}. The ArrayList is all of the rows, in
+   * the order returned.
+   * 
+   * @param query
+   *   The query to execute.
+   * @return The list of maps, as described above.
+   */
+  public ArrayList<HashMap<String, String>> stringQuery(String query) {
+    try {
+      return stringQuery(stmt.executeQuery(query));
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
+  }
+  
+  /**
+   * Runs a query and returns the whole thing using Strings.
+   * <p>
+   * For a more complete description, see {@link #stringQuery(ResultSet)}
+   * 
+   * @param dbst
+   *   A prepared statement created by {@link #prepare(String)}.
+   * @param objs
+   *   The parameters to use in the statement.
+   * @return The list of maps, as described above.
+   */
+  public ArrayList<HashMap<String, String>> stringQuery(DBStatement dbst,
+      Object... objs) {
+    dbst.populate(objs);
+    return stringQuery(dbst.run());
+  }
+  
+  private ArrayList<HashMap<String, String>> stringQuery(ResultSet res) {
+    try {
+      ArrayList<HashMap<String, String>> out = new ArrayList<>();
+      
+      while (res.next()) {
+        out.add(getStringRow(res));
+      }
+      
+      return out;
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
+  }
+  
+  /**
    * Runs a query and returns the first column.
    * <p>
    * The result of this method is only the first column of each row.
@@ -126,6 +176,60 @@ public class DBConnection {
       
       while (res.next()) {
         out.add(res.getObject(1));
+      }
+      
+      return out;
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
+  }
+  
+  /**
+   * Runs a query and returns the first column, as Strings.
+   * <p>
+   * The result of this method is only the first column of each row. All
+   * objects are converted to {@link String}s.
+   * 
+   * @param query
+   *   The query to run
+   * @return The list of strings, as described above
+   */
+  public ArrayList<String> getStringList(String query) {
+    try {
+      return getStringList(stmt.executeQuery(query));
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
+  }
+  
+  /**
+   * Runs a query and returns the first column, as strings.
+   * <p>
+   * For a more complete description, see {@link #getStringList(String)}.
+   * 
+   * @param dbst
+   *   A prepared statement created by {@link #prepare(String)}.
+   * @param objs
+   *   The parameters to use in the statement.
+   * @return The list of strings, as described above
+   */
+  public ArrayList<String> getStringList(DBStatement dbst,
+      Object... objs) {
+    dbst.populate(objs);
+    return getStringList(dbst.run());
+  }
+  
+  private ArrayList<String> getStringList(ResultSet res) {
+    try {
+      ArrayList<String> out = new ArrayList<>();
+      
+      while (res.next()) {
+        Object obj = res.getObject(1);
+        if (obj == null) {
+          out.add(null);
+        } else {
+          out.add(obj.toString());
+        }
       }
       
       return out;
@@ -232,6 +336,63 @@ public class DBConnection {
   }
   
   /**
+   * Returns a single-row result, using strings.
+   * <p>
+   * This method creates a HashMap of the row, where the keys are the
+   * column labels and the values are the... well, values. All values are
+   * converted to {@link String}s.
+   * 
+   * @param query
+   *   The query to run
+   * @return The row, as described above.
+   */
+  public HashMap<String, String> getStringRow(String query) {
+    try {
+      return getStringRow(stmt.executeQuery(query));
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
+  }
+  
+  /**
+   * Returns a single-row result, using Strings.
+   * <p>
+   * For further information, see {@link #getStringRow(String)}.
+   * 
+   * @param dbst
+   *   A prepared statement created by {@link #prepare(String)}.
+   * @param objs
+   *   The parameters to use in the statement.
+   * @return The row, as described above.
+   */
+  public HashMap<String, String> getStringRow(DBStatement dbst,
+      Object... objs) {
+    dbst.populate(objs);
+    return getStringRow(dbst.run());
+  }
+  
+  private HashMap<String, String> getStringRow(ResultSet res) {
+    try {
+      HashMap<String, String> out = new HashMap<>();
+      ResultSetMetaData meta = res.getMetaData();
+      int cols = meta.getColumnCount();
+      for (int col = 1; col <= cols; col++) {
+        String label = meta.getColumnLabel(col);
+        Object obj = res.getObject(col);
+        if (obj != null) {
+          out.put(label, obj.toString());
+        } else {
+          out.put(label, null);
+        }
+      }
+      
+      return out;
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
+  }
+  
+  /**
    * Creates a map out of a two-column result.
    * <p>
    * The keys of the returned map are the values in the first column of the
@@ -275,6 +436,62 @@ public class DBConnection {
         Object key = res.getObject(1);
         Object value = res.getObject(2);
         out.put(key, value);
+      }
+      
+      return out;
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
+  }
+  
+  /**
+   * Creates a map out of a two-column result, converting all to strinsg.
+   * <p>
+   * The keys of the returned map are the values in the first column of the
+   * result set. If there are any repeated values, only the final value for
+   * each key is retained. The values of the map are the values in the
+   * second column of the result set. All objects on both sides are
+   * converted to Strings using toString().
+   * 
+   * @param query
+   *   The query to run
+   * @return The map, as described above.
+   */
+  public HashMap<String, String> getStringMap(String query) {
+    try {
+      return getStringMap(stmt.executeQuery(query));
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
+  }
+  
+  /**
+   * Creates a map out of a two-column result.
+   * <p>
+   * For more information, see {@link #getMap(String)}.
+   * 
+   * @param dbst
+   *   A prepared statement created by {@link #prepare(String)}.
+   * @param objs
+   *   The parameters to use in the statement.
+   * @return The map, as described above.
+   */
+  public HashMap<String, String> getStringMap(DBStatement dbst,
+      Object... objs) {
+    dbst.populate(objs);
+    return getStringMap(dbst.run());
+  }
+  
+  private HashMap<String, String> getStringMap(ResultSet res) {
+    try {
+      HashMap<String, String> out = new HashMap<>();
+      
+      while (res.next()) {
+        Object key = res.getObject(1);
+        Object value = res.getObject(2);
+        String keyString = (key == null) ? null : key.toString();
+        String valString = (value == null) ? null : value.toString();
+        out.put(keyString, valString);
       }
       
       return out;
