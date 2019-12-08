@@ -1,6 +1,7 @@
 package com.github.theoakemontrainers.oakedex;
 
 import javax.swing.*;
+import java.util.Scanner;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
@@ -99,7 +100,7 @@ public class OakResults extends JFrame implements ActionListener {
 	    
 	    // These are just examples. Add more if you want the scroll functionality
 	    // Remove comments if you want to test it
-	    addToResults("idk", "Torchic");
+	    addToResults("255", "Torchic");
 	    addToResults("idk", "Combusken");
 	    addToResults("idk", "Blaziken");
 	    addToResults("idk", "Squirtle");
@@ -133,15 +134,18 @@ public class OakResults extends JFrame implements ActionListener {
 			new OakSearch().setVisible(true);
 		}
 		
-		if (ae.getSource() instanceof JButton)	// This is called when you hit one of the resulting pokemon names
+		if (ae.getSource() instanceof JButton)	// This is called when you hit one of the resulting pokemon stuff
 		{
 			System.out.println("Test");
 			JButton clicked = (JButton)ae.getSource();	// gets the button that you hit
-			String clickedName = clicked.getText();		// gets the text in the button (the name of the pokemon)
+			String clickedText = clicked.getText();		// gets the text in the button (the ID and name of the pokemon)
+			Scanner sc = new Scanner(clickedText);
+			int resultID = sc.nextInt();
 			
 			// eventually resorts to...
 			dispose();
-			new OakEntry().setVisible(true);
+			OakEntry resultEntry = new OakEntry(resultID);
+			resultEntry.setVisible(true);
 		}
 	}
 	

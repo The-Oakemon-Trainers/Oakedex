@@ -22,7 +22,8 @@ public class OakEntry extends JFrame implements ActionListener {
    private JMenuItem itemResults, itemSearch, itemMenu, itemExit, itemFull, itemExitFull;
    
    private JLabel lblName, lblNum, lblType1, lblType2, lblGender,
-         lblGeneration, lblRegion;
+         lblGeneration;
+   private JTextArea lblRegion;
    //private JLabel LBLSTAT, LBLABILITY;
    private JTable statTable, abilityTable;
    
@@ -41,11 +42,12 @@ public class OakEntry extends JFrame implements ActionListener {
 //      entryPage.setVisible(true);
 //   }
    
-   public OakEntry() {
+   public OakEntry(int pID) {
 	  setExtendedState(JFrame.MAXIMIZED_BOTH);
 	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  setTitle("Oakedex Pokemon Entry");
       frame.setLayout(entryLayout);
+      setGUI(pID);
       
       // ---------- Menu Bar ------------\\
       
@@ -110,16 +112,16 @@ public class OakEntry extends JFrame implements ActionListener {
       lblName = new JLabel(name, SwingConstants.CENTER);
       frame.add(lblName);
       
-      lblNum = new JLabel(number, SwingConstants.CENTER);
+      lblNum = new JLabel("National Dex #:  " + number, SwingConstants.CENTER);
       frame.add(lblNum);
       
       blankCell();
       blankCell();
       
-      lblType1 = new JLabel(type1, SwingConstants.CENTER);
+      lblType1 = new JLabel("Primary Type:  " + type1, SwingConstants.CENTER);
       frame.add(lblType1);
       
-      lblType2 = new JLabel(type2, SwingConstants.CENTER);
+      lblType2 = new JLabel("Secondary Type:  " + type2, SwingConstants.CENTER);
       frame.add(lblType2);
       
       blankCell();
@@ -149,16 +151,19 @@ public class OakEntry extends JFrame implements ActionListener {
       blankCell();
       blankCell();
       
-      lblGender = new JLabel("Gender Ratio: " + gender, SwingConstants.CENTER);
+      lblGender = new JLabel("Gender Ratio:  " + gender, SwingConstants.CENTER);
       frame.add(lblGender);
       
-      lblGeneration = new JLabel("Generation: " + generation, SwingConstants.CENTER);
+      lblGeneration = new JLabel("Generation:  " + generation, SwingConstants.CENTER);
       frame.add(lblGeneration);
       
       blankCell();
       blankCell();
       
-      lblRegion = new JLabel("Region: " + region, SwingConstants.CENTER);
+      lblRegion = new JTextArea("Regional Pokédex numbers:  \n" + region);
+      //lblRegion.setAlignment(Component.CENTER);
+      lblRegion.setEditable(false);
+      lblRegion.setOpaque(false);
       frame.add(lblRegion);  
       
       frame.add(new JLabel());
@@ -166,17 +171,64 @@ public class OakEntry extends JFrame implements ActionListener {
       blankCell();
    }
    
-   public void setGUI(HashMap<String, String> hashyboi)
+   public void setGUI(int pokemonFormID)
    {
+	   HashMap<String, String> hashyboi = OakMain.info.getMainInfo(pokemonFormID);
 	   number = hashyboi.get("number");
+	   //lblNum.setText(number);
 	   type1 = hashyboi.get("type 1");
+	   //lblType1.setText(type1);
 	   type2 = hashyboi.get("type 2");
+	   if (type2 == null)
+		   type2 = "None";
+	   //lblType2.setText(type2);
 	   ability1 = hashyboi.get("ability 1");
 	   ability2 = hashyboi.get("ability 2");
 	   ability3 = hashyboi.get("hidden ability");
 	   gender = hashyboi.get("gender ratio");
+	   
+	   switch (gender)
+	   {
+	   case "-1": gender = "Genderless";
+	   	break;
+	   case "0": gender = "All Male";
+	   	break;
+	   case "1": gender = "87.5% Male";
+	   	break;
+	   case "2": gender = "75% Male";
+	    break;
+	   case "3": gender = "62.5% Male";
+	   	break;
+	   case "4": gender = "Half Male and Female";
+	   	break;
+	   case "5": gender = "62.5% Female";
+	   	break;
+	   case "6": gender = "75% Female";
+	   	break;
+	   case "7": gender = "87.5% Female";
+	   	break;
+	   case "8": gender = "All Female";
+	   	break;
+	   }
+	   
+	   //lblGender.setText(gender);
 	   generation = hashyboi.get("generation");
-	   name = OakMain.info.getEnglishName(Integer.parseInt(hashyboi.get("number")));
+	   //lblGeneration.setText(generation);
+	   name = OakMain.info.getEnglishName(pokemonFormID);
+	   //lblName.setText(name);
+	   
+	   HashMap<String, String> hashStat = OakMain.info.getStats(pokemonFormID);
+	   statVal1 = hashStat.get("hp");
+	   statVal2 = hashStat.get("attack");
+	   statVal3 = hashStat.get("defense");
+	   statVal4 = hashStat.get("special-attack");
+	   statVal5 = hashStat.get("special-defense");
+	   statVal6 = hashStat.get("speed");
+	   
+	   region = "";
+	   for (String line : OakMain.info.getDexNumber(pokemonFormID)) {
+		   region += "\n" + line;
+	   }
    }
    
    public void blankCell()
