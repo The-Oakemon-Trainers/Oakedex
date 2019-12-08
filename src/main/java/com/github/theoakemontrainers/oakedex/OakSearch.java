@@ -31,7 +31,8 @@ public class OakSearch extends JFrame implements ActionListener {
 	private JCheckBox chkGen1, chkGen2, chkGen3, chkGen4, chkGen5, chkGen6, chkGen7, chkSameEff, chkLvl, chkEvolution, chkMachine, chkTutor, chkEgg, chkAlolaForm, chkMega;
 	
 	// Column 3 fields
-	
+	private JTextField txtNumber;
+	private JCheckBox chkIn1, chkIn2, chkIn3, chkIn4, chkIn5, chkIn6, chkIn7, chkIn8, chkIn9, chkIn10, chkIn11, chkIn12, chkIn13, chkIn14, chkIn15, chkIn16, chkIn17, chkIn18, chkIn19, chkIn20, chkIn21, chkIn22, chkIn23, chkEx1, chkEx2, chkEx3, chkEx4, chkEx5, chkEx6, chkEx7, chkEx8, chkEx9, chkEx10, chkEx11, chkEx12, chkEx13, chkEx14, chkEx15, chkEx16, chkEx17, chkEx18, chkEx19, chkEx20, chkEx21, chkEx22, chkEx23;
 	
 	
 	// Remove comment to test
@@ -373,6 +374,229 @@ public class OakSearch extends JFrame implements ActionListener {
 	    
 	    col3 = new JPanel();
 	    col3.setLayout(colLayout);
+	    
+	    JPanel subPan1, subPan2, subPan3, subPan4, subPan5, subPan6, subPan7, subPan8, subPan9, subPan10, subPan11, subPan12, subPan13, subPan14, subPan15, subPan16, subPan17, subPan18, subPan19, subPan20, subPan21, subPan22, subPan23;
+	    
+	    col3EmptySpace();
+	    
+	    col3.add(new JLabel("Pokedex #:", SwingConstants.RIGHT));
+	    txtNumber = new JTextField();
+	    col3.add(txtNumber);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel());
+	    col3.add(new JLabel("in.   ex.", SwingConstants.CENTER));
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("National", SwingConstants.RIGHT));
+	    subPan1 = new JPanel();
+	    chkIn1 = new JCheckBox();
+	    chkEx1 = new JCheckBox();
+	    subPan1.add(chkIn1);
+	    subPan1.add(chkEx1);
+	    col3.add(subPan1);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Johto (II)", SwingConstants.RIGHT));
+	    subPan2 = new JPanel();
+	    chkIn2 = new JCheckBox();
+	    chkEx2 = new JCheckBox();
+	    subPan2.add(chkIn2);
+	    subPan2.add(chkEx2);
+	    col3.add(subPan2);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Johto (IV)", SwingConstants.RIGHT));
+	    subPan3 = new JPanel();
+	    chkIn3 = new JCheckBox();
+	    chkEx3 = new JCheckBox();
+	    subPan3.add(chkIn3);
+	    subPan3.add(chkEx3);
+	    col3.add(subPan3);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Hoenn (III)", SwingConstants.RIGHT));
+	    subPan4 = new JPanel();
+	    chkIn4 = new JCheckBox();
+	    chkEx4 = new JCheckBox();
+	    subPan4.add(chkIn4);
+	    subPan4.add(chkEx4);
+	    col3.add(subPan4);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Hoenn (VI)", SwingConstants.RIGHT));
+	    subPan5 = new JPanel();
+	    chkIn5 = new JCheckBox();
+	    chkEx5 = new JCheckBox();
+	    subPan5.add(chkIn5);
+	    subPan5.add(chkEx5);
+	    col3.add(subPan5);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Sinnoh (D/P)", SwingConstants.RIGHT));
+	    subPan6 = new JPanel();
+	    chkIn6 = new JCheckBox();
+	    chkEx6 = new JCheckBox();
+	    subPan6.add(chkIn6);
+	    subPan6.add(chkEx6);
+	    col3.add(subPan6);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Sinnoh (Pt)", SwingConstants.RIGHT));
+	    subPan7 = new JPanel();
+	    chkIn7 = new JCheckBox();
+	    chkEx7 = new JCheckBox();
+	    subPan7.add(chkIn7);
+	    subPan7.add(chkEx7);
+	    col3.add(subPan7);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Unova (BW)", SwingConstants.RIGHT));
+	    subPan8 = new JPanel();
+	    chkIn8 = new JCheckBox();
+	    chkEx8 = new JCheckBox();
+	    subPan8.add(chkIn8);
+	    subPan8.add(chkEx8);
+	    col3.add(subPan8);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Unova (B2W2)", SwingConstants.RIGHT));
+	    subPan9 = new JPanel();
+	    chkIn9 = new JCheckBox();
+	    chkEx9 = new JCheckBox();
+	    subPan9.add(chkIn9);
+	    subPan9.add(chkEx9);
+	    col3.add(subPan9);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Kalos (All)", SwingConstants.RIGHT));
+	    subPan10 = new JPanel();
+	    chkIn10 = new JCheckBox();
+	    chkEx10 = new JCheckBox();
+	    subPan10.add(chkIn10);
+	    subPan10.add(chkEx10);
+	    col3.add(subPan10);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Kalos (Coastal)", SwingConstants.RIGHT));
+	    subPan11 = new JPanel();
+	    chkIn11 = new JCheckBox();
+	    chkEx11 = new JCheckBox();
+	    subPan11.add(chkIn11);
+	    subPan11.add(chkEx11);
+	    col3.add(subPan11);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Kalos (Central)", SwingConstants.RIGHT));
+	    subPan12 = new JPanel();
+	    chkIn12 = new JCheckBox();
+	    chkEx12 = new JCheckBox();
+	    subPan12.add(chkIn12);
+	    subPan12.add(chkEx12);
+	    col3.add(subPan12);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Kalos (Mountain)", SwingConstants.RIGHT));
+	    subPan13 = new JPanel();
+	    chkIn13 = new JCheckBox();
+	    chkEx13 = new JCheckBox();
+	    subPan13.add(chkIn13);
+	    subPan13.add(chkEx13);
+	    col3.add(subPan13);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Alola (All - SM)", SwingConstants.RIGHT));
+	    subPan14 = new JPanel();
+	    chkIn14 = new JCheckBox();
+	    chkEx14 = new JCheckBox();
+	    subPan14.add(chkIn14);
+	    subPan14.add(chkEx14);
+	    col3.add(subPan14);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Alola (Melemele - SM)", SwingConstants.RIGHT));
+	    subPan15 = new JPanel();
+	    chkIn15 = new JCheckBox();
+	    chkEx15 = new JCheckBox();
+	    subPan15.add(chkIn15);
+	    subPan15.add(chkEx15);
+	    col3.add(subPan15);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Alola (Akala - SM)", SwingConstants.RIGHT));
+	    subPan16 = new JPanel();
+	    chkIn16 = new JCheckBox();
+	    chkEx16 = new JCheckBox();
+	    subPan16.add(chkIn16);
+	    subPan16.add(chkEx16);
+	    col3.add(subPan16);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Alola (Ula'ula - SM)", SwingConstants.RIGHT));
+	    subPan17 = new JPanel();
+	    chkIn17 = new JCheckBox();
+	    chkEx17 = new JCheckBox();
+	    subPan17.add(chkIn17);
+	    subPan17.add(chkEx17);
+	    col3.add(subPan17);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Alola (Poni - SM)", SwingConstants.RIGHT));
+	    subPan18 = new JPanel();
+	    chkIn18 = new JCheckBox();
+	    chkEx18 = new JCheckBox();
+	    subPan18.add(chkIn18);
+	    subPan18.add(chkEx18);
+	    col3.add(subPan18);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Alola (All - USUM)", SwingConstants.RIGHT));
+	    subPan19 = new JPanel();
+	    chkIn19 = new JCheckBox();
+	    chkEx19 = new JCheckBox();
+	    subPan19.add(chkIn19);
+	    subPan19.add(chkEx19);
+	    col3.add(subPan19);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Alola (Melemele - USUM)", SwingConstants.RIGHT));
+	    subPan20 = new JPanel();
+	    chkIn20 = new JCheckBox();
+	    chkEx20 = new JCheckBox();
+	    subPan20.add(chkIn20);
+	    subPan20.add(chkEx20);
+	    col3.add(subPan20);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Alola (Akala - USUM)", SwingConstants.RIGHT));
+	    subPan21 = new JPanel();
+	    chkIn21 = new JCheckBox();
+	    chkEx21 = new JCheckBox();
+	    subPan21.add(chkIn21);
+	    subPan21.add(chkEx21);
+	    col3.add(subPan21);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Alola (Ula'ula - USUM)", SwingConstants.RIGHT));
+	    subPan22 = new JPanel();
+	    chkIn22 = new JCheckBox();
+	    chkEx22 = new JCheckBox();
+	    subPan22.add(chkIn22);
+	    subPan22.add(chkEx22);
+	    col3.add(subPan22);
+	    col3.add(new JLabel());
+	    
+	    col3.add(new JLabel("Alola (Poni - USUM)", SwingConstants.RIGHT));
+	    subPan23 = new JPanel();
+	    chkIn23 = new JCheckBox();
+	    chkEx23 = new JCheckBox();
+	    subPan23.add(chkIn23);
+	    subPan23.add(chkEx23);
+	    col3.add(subPan23);
+	    col3.add(new JLabel());
+	    
+	    col3EmptySpace();
+	    col3EmptySpace();
 	    
 	    frame.add(col3);
 	}
