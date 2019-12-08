@@ -105,19 +105,19 @@ public class OakEntry extends JFrame implements ActionListener {
       
       blankCell();
       
-      lblName = new JLabel("Name");
+      lblName = new JLabel("Name", SwingConstants.CENTER);
       frame.add(lblName);
       
-      lblNum = new JLabel("Number");
+      lblNum = new JLabel("Number", SwingConstants.CENTER);
       frame.add(lblNum);
       
       blankCell();
       blankCell();
       
-      lblType1 = new JLabel("Type1");
+      lblType1 = new JLabel("Type1", SwingConstants.CENTER);
       frame.add(lblType1);
       
-      lblType2 = new JLabel("(type2)");
+      lblType2 = new JLabel("(type2)", SwingConstants.CENTER);
       frame.add(lblType2);
       
       blankCell();
@@ -147,16 +147,16 @@ public class OakEntry extends JFrame implements ActionListener {
       blankCell();
       blankCell();
       
-      lblGender = new JLabel("Gender Ratio: ");
+      lblGender = new JLabel("Gender Ratio: ", SwingConstants.CENTER);
       frame.add(lblGender);
       
-      lblGeneration = new JLabel("Generation:");
+      lblGeneration = new JLabel("Generation: ", SwingConstants.CENTER);
       frame.add(lblGeneration);
       
       blankCell();
       blankCell();
       
-      lblRegion = new JLabel("Region: ");
+      lblRegion = new JLabel("Region: ", SwingConstants.CENTER);
       frame.add(lblRegion);  
       
       frame.add(new JLabel());

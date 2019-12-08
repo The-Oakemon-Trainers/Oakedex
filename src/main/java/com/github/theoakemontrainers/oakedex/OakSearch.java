@@ -17,6 +17,20 @@ public class OakSearch extends JFrame implements ActionListener {
 	private JMenuBar menuBar;
 	private JMenu menuBack, menuScreen;
 	private JMenuItem itemMenu, itemExit, itemFull, itemExitFull;
+
+	private JPanel col1, col2, col3;
+	
+	// Column 1 fields
+	private JTextField txtName;
+	private JComboBox cmbAbility, cmbType;
+	private JCheckBox chkNormalAbil, chkHiddenAbil, chkNormalType, chkFightingType, chkFlyingType, chkPoisonType, chkGroundType, chkRockType, chkBugType, chkGhostType, chkSteelType, chkFireType, chkWaterType, chkGrassType, chkElectricType, chkPsychicType, chkIceType, chkDragonType, chkDarkType, chkFairyType;
+	
+	// Column 2 fields
+	
+	
+	// Column 3 fields
+	
+	
 	
 	// Remove comment to test
 	public static void main (String[] args)
@@ -85,15 +99,152 @@ public class OakSearch extends JFrame implements ActionListener {
 	    
 	    //----------------- Other --------------------\\
 	    
-	    JPanel col1 = new JPanel();
+	    GridLayout colLayout = new GridLayout(0, 3, 5, 5);	// A layout where there is an ambiguous amount of rows and two columns
+	    
+	    //------------- Column 1 --------------------\\
+	    
+	    col1 = new JPanel();
+	    col1.setLayout(colLayout);
+	    
+	    col1EmptySpace();
+	    
+	    col1.add(new JLabel("Name:", SwingConstants.RIGHT));
+	    txtName = new JTextField();
+	    col1.add(txtName);
+	    col1.add(new JLabel());
+	    
+	    col1EmptySpace();
+	    
+	    col1.add(new JLabel("Ability:", SwingConstants.RIGHT));
+	    cmbAbility = new JComboBox();
+	    col1.add(cmbAbility);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("As Normal:", SwingConstants.RIGHT));
+	    chkNormalAbil = new JCheckBox();
+	    col1.add(chkNormalAbil);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("As Hidden:", SwingConstants.RIGHT));
+	    chkHiddenAbil = new JCheckBox();
+	    col1.add(chkHiddenAbil);
+	    col1.add(new JLabel());
+	    
+	    col1EmptySpace();
+	    
+	    col1.add(new JLabel("Types:", SwingConstants.RIGHT));
+	    cmbType = new JComboBox();
+	    col1.add(cmbType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Normal", SwingConstants.RIGHT));
+	    chkNormalType = new JCheckBox();
+	    col1.add(chkNormalType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Fighting", SwingConstants.RIGHT));
+	    chkFightingType = new JCheckBox();
+	    col1.add(chkFightingType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Flying", SwingConstants.RIGHT));
+	    chkFlyingType = new JCheckBox();
+	    col1.add(chkFlyingType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Poison", SwingConstants.RIGHT));
+	    chkPoisonType = new JCheckBox();
+	    col1.add(chkPoisonType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Ground", SwingConstants.RIGHT));
+	    chkGroundType = new JCheckBox();
+	    col1.add(chkGroundType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Rock", SwingConstants.RIGHT));
+	    chkRockType = new JCheckBox();
+	    col1.add(chkRockType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Bug", SwingConstants.RIGHT));
+	    chkBugType = new JCheckBox();
+	    col1.add(chkBugType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Ghost", SwingConstants.RIGHT));
+	    chkGhostType = new JCheckBox();
+	    col1.add(chkGhostType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Steel", SwingConstants.RIGHT));
+	    chkSteelType = new JCheckBox();
+	    col1.add(chkSteelType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Fire", SwingConstants.RIGHT));
+	    chkFireType = new JCheckBox();
+	    col1.add(chkFireType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Water", SwingConstants.RIGHT));
+	    chkWaterType = new JCheckBox();
+	    col1.add(chkWaterType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Grass", SwingConstants.RIGHT));
+	    chkGrassType = new JCheckBox();
+	    col1.add(chkGrassType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Electric", SwingConstants.RIGHT));
+	    chkElectricType = new JCheckBox();
+	    col1.add(chkElectricType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Psychic", SwingConstants.RIGHT));
+	    chkPsychicType = new JCheckBox();
+	    col1.add(chkPsychicType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Ice", SwingConstants.RIGHT));
+	    chkIceType = new JCheckBox();
+	    col1.add(chkIceType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Dragon", SwingConstants.RIGHT));
+	    chkDragonType = new JCheckBox();
+	    col1.add(chkDragonType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Dark", SwingConstants.RIGHT));
+	    chkDarkType = new JCheckBox();
+	    col1.add(chkDarkType);
+	    col1.add(new JLabel());
+	    
+	    col1.add(new JLabel("Fairy", SwingConstants.RIGHT));
+	    chkFairyType = new JCheckBox();
+	    col1.add(chkFairyType);
+	    col1.add(new JLabel());
+	    
+	    col1EmptySpace();
+	    col1EmptySpace();
+	    col1EmptySpace();
+	    
 	    frame.add(col1);
 	    
+	    //-------------- Column 2 --------------------\\
 	    
-	    JPanel col2 = new JPanel();
+	    col2 = new JPanel();
+	    col2.setLayout(colLayout);
+	    
 	    frame.add(col2);
 	    
+	    //---------------- Column 3 ---------------------\\
 	    
-	    JPanel col3 = new JPanel();
+	    col3 = new JPanel();
+	    col3.setLayout(colLayout);
+	    
 	    frame.add(col3);
 	}
 	
@@ -102,5 +253,26 @@ public class OakSearch extends JFrame implements ActionListener {
 	    {
 	       System.exit(0);
 	    }
+	}
+	
+	private void col1EmptySpace()
+	{
+		col1.add(new JLabel());
+		col1.add(new JLabel());
+		col1.add(new JLabel());
+	}
+	
+	private void col2EmptySpace()
+	{
+		col2.add(new JLabel());
+		col2.add(new JLabel());
+		col2.add(new JLabel());
+	}
+	
+	private void col3EmptySpace()
+	{
+		col3.add(new JLabel());
+		col3.add(new JLabel());
+		col3.add(new JLabel());
 	}
 }
