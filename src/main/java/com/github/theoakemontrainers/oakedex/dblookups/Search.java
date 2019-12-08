@@ -36,12 +36,12 @@ public class Search {
     conn.update(reset);
   }
   
-  public int searchName(String name) {
+  public int filterName(String name) {
     conn.update(searchName, name);
     return (int) conn.getResult(count);
   }
   
-  public int searchAbilities(String name, boolean normal, boolean hidden) {
+  public int filterAbilities(String name, boolean normal, boolean hidden) {
     conn.update(searchAbilityStart, name.toLowerCase());
     
     if (normal || !hidden) {
