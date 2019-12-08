@@ -12,6 +12,7 @@ public class Info {
   private DBStatement allNames;
   private DBStatement mainInfo;
   private DBStatement stats;
+  private DBStatement dexNumbers;
   
   public Info(DBConnection c) {
     conn = c;
@@ -19,6 +20,7 @@ public class Info {
     allNames = c.prepare(Statements.ALL_NAMES);
     mainInfo = c.prepare(Statements.MAIN_INFO);
     stats = c.prepare(Statements.STATS);
+    dexNumbers = c.prepare(Statements.DEXNUMS);
   }
   
   public String getEnglishName(int pokemonFormID) {
@@ -58,5 +60,18 @@ public class Info {
   
   public HashMap<String, String> getStats(int pokemonFormID) {
     return conn.getStringMap(stats, pokemonFormID);
+  }
+  
+  public ArrayList<String> getDexNumber(int pokemonFormID) {
+    ArrayList<HashMap<String, Object>> query = conn.query(dexNumbers,
+        pokemonFormID);
+    ArrayList<String> out = new ArrayList<>();
+    
+    for (HashMap<String, Object> row : query) {
+      String line = row.get("region") + ": " + row.get("number");
+      out.add(line);
+    }
+    
+    return out;
   }
 }

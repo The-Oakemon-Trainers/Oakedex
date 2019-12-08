@@ -78,13 +78,15 @@ public class DBTest {
   }
   
   public static void test3() {
-    deepPrint(info.getEnglishName(386));
+    deepPrint(info.getEnglishName(135));
     System.out.println();
-    deepPrint(info.getNames(386));
+    deepPrint(info.getNames(135));
     System.out.println();
-    deepPrint(info.getMainInfo(386));
+    deepPrint(info.getMainInfo(135));
     System.out.println();
-    deepPrint(info.getStats(386));
+    deepPrint(info.getStats(135));
+    System.out.println();
+    deepPrint(info.getDexNumber(135));
   }
   
   public static void deepPrint(Object obj) {
