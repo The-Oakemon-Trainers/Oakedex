@@ -17,17 +17,19 @@ public class OakMenu extends JFrame implements ActionListener {
 	private JMenu menuBack, menuScreen;
 	private JMenuItem itemExit, itemFull, itemExitFull;
 	
+	private JButton btnOpen;
+	
 	// Remove comment to test
 //	public static void main (String[] args)
 //	{
 //		OakMenu menuPage = new OakMenu();
 //		menuPage.setVisible(true);
-//		menuPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //	}
 	
 	public OakMenu()
 	{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Oakedex Menu");
 		frame.setLayout(menuLayout);
 		frame.setBackground(new Color(126, 0, 0));
@@ -96,11 +98,12 @@ public class OakMenu extends JFrame implements ActionListener {
 	    frame.add(new JLabel());
 	    frame.add(new JLabel());
 	    
-	    JButton btnOpen = new JButton("Open");
+	    btnOpen = new JButton("Open");
 	    btnOpen.setBackground(new Color(126, 0, 0));
 	    btnOpen.setForeground(new Color(242, 242, 242));
 	    btnOpen.setFont(btnOpen.getFont().deriveFont(40.0f));
 	    btnOpen.setBorder(BorderFactory.createEmptyBorder());
+	    btnOpen.addActionListener(this);
 		frame.add(btnOpen);
 	    
 	    frame.add(new JLabel());
@@ -111,5 +114,11 @@ public class OakMenu extends JFrame implements ActionListener {
 	    {
 	       System.exit(0);
 	    }
+		
+		if (ae.getSource() == btnOpen)
+		{
+			dispose();
+			new OakSearch().setVisible(true);
+		}
 	}
 }

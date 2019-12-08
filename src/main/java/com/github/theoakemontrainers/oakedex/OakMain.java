@@ -20,7 +20,7 @@ public class OakMain {
 	}
 	
 	public static void main(String[] args) {
-		
+		new OakMenu().setVisible(true);
 	}
 	
 }

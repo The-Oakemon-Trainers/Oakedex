@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import javax.imageio.ImageIO;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 import java.text.NumberFormat;
 
@@ -37,11 +38,11 @@ public class OakEntry extends JFrame implements ActionListener {
 //   public static void main(String[] args) {			
 //      OakEntry entryPage = new OakEntry();
 //      entryPage.setVisible(true);
-//      entryPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //   }
    
    public OakEntry() {
 	  setExtendedState(JFrame.MAXIMIZED_BOTH);
+	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  setTitle("Oakedex Pokemon Entry");
       frame.setLayout(entryLayout);
       
@@ -117,7 +118,7 @@ public class OakEntry extends JFrame implements ActionListener {
       lblType1 = new JLabel("Type1", SwingConstants.CENTER);
       frame.add(lblType1);
       
-      lblType2 = new JLabel("(type2)", SwingConstants.CENTER);
+      lblType2 = new JLabel("", SwingConstants.CENTER);
       frame.add(lblType2);
       
       blankCell();
@@ -165,13 +166,12 @@ public class OakEntry extends JFrame implements ActionListener {
       
       //------------ Set Data ------------------\\
       
-      setGUI();
+//      setGUI();
    }
    
-   public void setGUI()
+   public void setGUI(HashMap<String, String> hashyboi)
    {
-	   //This is where we set the text for the pokemon's data when the page is opened.
-	   //I just don't know the object name or variable names yet, so I can't really fill this out at the moment.
+	   lblNum.setText(hashyboi.get("number"));
    }
    
    public void blankCell()
@@ -186,6 +186,18 @@ public class OakEntry extends JFrame implements ActionListener {
       {
          System.exit(0);
       }
+      
+      if (ae.getSource() == itemMenu)
+	  {
+	  	dispose();
+	  	new OakMenu().setVisible(true);
+	  }
+	  
+	  if (ae.getSource() == itemSearch)
+	  {
+	  	dispose();
+	  	new OakSearch().setVisible(true);
+	  }
    }
    
    /*
