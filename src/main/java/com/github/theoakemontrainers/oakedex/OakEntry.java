@@ -42,7 +42,7 @@ public class OakEntry extends JFrame implements ActionListener {
    
    public OakEntry() {
 	  setExtendedState(JFrame.MAXIMIZED_BOTH);
-	  setTitle("Pokemon Entry");
+	  setTitle("Oakedex Pokemon Entry");
       frame.setLayout(entryLayout);
       
       // ---------- Menu Bar ------------\\

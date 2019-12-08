@@ -36,16 +36,16 @@ public class OakSearch extends JFrame implements ActionListener {
 	
 	
 	// Remove comment to test
-	public static void main (String[] args)
-	{
-		OakSearch searchPage = new OakSearch();
-		searchPage.setVisible(true);
-		searchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
+//	public static void main (String[] args)
+//	{
+//		OakSearch searchPage = new OakSearch();
+//		searchPage.setVisible(true);
+//		searchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	}
 	
 	public OakSearch()
 	{
-		setTitle("Oakedex Results");
+		setTitle("Oakedex Search");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		
 		GridLayout searchLayout = new GridLayout(1, 3, 20, 0);
