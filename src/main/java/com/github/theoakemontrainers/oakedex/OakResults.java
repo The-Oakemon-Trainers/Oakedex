@@ -100,17 +100,17 @@ public class OakResults extends JFrame implements ActionListener {
 	    
 	    // These are just examples. Add more if you want the scroll functionality
 	    // Remove comments if you want to test it
-	    addToResults("255", "Torchic");
-	    addToResults("idk", "Combusken");
-	    addToResults("idk", "Blaziken");
-	    addToResults("idk", "Squirtle");
-	    addToResults("idk", "Ivysaur");
-	    addToResults("idk", "Charizard");
-	    addToResults("idk", "Eevee");
-	    addToResults("idk", "Vaporeon");
-	    addToResults("idk", "Leafeon");
-	    addToResults("idk", "Silveon");
-	    addToResults("idk", "flareon");
+//	    addToResults("255", "Torchic");
+//	    addToResults("idk", "Combusken");
+//	    addToResults("idk", "Blaziken");
+//	    addToResults("idk", "Squirtle");
+//	    addToResults("idk", "Ivysaur");
+//	    addToResults("006", "Charizard");
+//	    addToResults("idk", "Eevee");
+//	    addToResults("idk", "Vaporeon");
+//	    addToResults("idk", "Leafeon");
+//	    addToResults("idk", "Silveon");
+//	    addToResults("idk", "flareon");
 	    
 	    
 	    blankCell();
@@ -136,7 +136,6 @@ public class OakResults extends JFrame implements ActionListener {
 		
 		if (ae.getSource() instanceof JButton)	// This is called when you hit one of the resulting pokemon stuff
 		{
-			System.out.println("Test");
 			JButton clicked = (JButton)ae.getSource();	// gets the button that you hit
 			String clickedText = clicked.getText();		// gets the text in the button (the ID and name of the pokemon)
 			Scanner sc = new Scanner(clickedText);
