@@ -22,7 +22,7 @@ public class OakEntry extends JFrame implements ActionListener {
    
    private JLabel lblName, lblNum, lblType1, lblType2, lblGender,
          lblGeneration, lblRegion;
-   private JLabel LBLSTAT, LBLABILITY;
+   //private JLabel LBLSTAT, LBLABILITY;
    private JTable statTable, abilityTable;
    
    private String statVal1, statVal2, statVal3, statVal4, ability1, ability2, ability3;
@@ -35,9 +35,9 @@ public class OakEntry extends JFrame implements ActionListener {
    private FileInputStream fileIn;
    
    //public static void main(String[] args) {			main is only for testing
-   //   OakEntry page = new OakEntry();
-   //   page.setVisible(true);
-   //   page.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   //   OakEntry entryPage = new OakEntry();
+   //   entryPage.setVisible(true);
+   //   entryPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    //}
    
    public OakEntry() {
@@ -187,6 +187,7 @@ public class OakEntry extends JFrame implements ActionListener {
       }
    }
    
+   /*
    public void openFile() // This allows the user to choose the database
                           // file from wherever via a menu,
    { // but we could also just put the database in the same directory as
@@ -218,17 +219,11 @@ public class OakEntry extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(this,
                   chosenFile.getName() + " Successfully Opened");
             
-            /*******************************************************************************************
-             * String data = dataIn.readLine(); while (data != null) { if
-             * (data != null||data != "") System.out.println(data); //More
-             * or less of confirmation that it works in testing data =
-             * dataIn.readLine(); }
-             *******************************************************************************************/
          } catch (IOException ioe) {
             JOptionPane.showMessageDialog(this, ioe.toString(), "Error",
                   JOptionPane.ERROR_MESSAGE);
             System.exit(1);
          }
       }
-   }
+   }*/
 }
