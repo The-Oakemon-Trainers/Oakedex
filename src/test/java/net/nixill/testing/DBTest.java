@@ -1,17 +1,35 @@
 package net.nixill.testing;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 
+import com.github.theoakemontrainers.oakedex.dblookups.Info;
 import com.github.theoakemontrainers.oakedex.dblookups.Lookup;
 
 import net.nixill.databases.DBConnection;
 
 public class DBTest {
+  private static final DBConnection conn;
+  private static final Lookup look;
+  private static final Info info;
+  // private static final Search search;
+  
+  // this has to be up here but is ok
+  static {
+    conn = new DBConnection("pokedex.db");
+    look = new Lookup(conn);
+    info = new Info(conn);
+    // search = new Search(conn);
+    
+  }
+  
   public static void main(String[] args) {
-    test1();
+    // test1();
     // test2();
+    test3();
   }
   
   public static void test1() {
@@ -56,6 +74,48 @@ public class DBTest {
     
     for (Integer i : ints) {
       System.out.println(i);
+    }
+  }
+  
+  public static void test3() {
+    deepPrint(info.getEnglishName(386));
+    System.out.println();
+    deepPrint(info.getNames(386));
+    System.out.println();
+    deepPrint(info.getMainInfo(386));
+    System.out.println();
+    deepPrint(info.getStats(386));
+  }
+  
+  public static void deepPrint(Object obj) {
+    deepPrint(obj, 0);
+  }
+  
+  public static void deepPrint(Object obj, int level) {
+    for (int i = 0; i < level; i++) {
+      System.out.print("  ");
+    }
+    
+    if (obj instanceof Collection) {
+      Collection<?> coll = (Collection<?>) obj;
+      System.out.println(coll.getClass().getSimpleName() + " ("
+          + coll.size() + " item(s)):");
+      for (Object itm : coll) {
+        deepPrint(itm, level + 1);
+      }
+    } else if (obj instanceof Map) {
+      Map<?, ?> map = (Map<?, ?>) obj;
+      System.out.println(map.getClass().getSimpleName() + " (" + map.size()
+          + " item(s)):");
+      for (Entry<?, ?> ent : map.entrySet()) {
+        deepPrint(ent, level + 1);
+      }
+    } else if (obj instanceof Entry) {
+      Entry<?, ?> ent = (Entry<?, ?>) obj;
+      System.out.println(ent.getKey());
+      deepPrint(ent.getValue(), level + 1);
+    } else {
+      System.out.println(obj);
     }
   }
 }

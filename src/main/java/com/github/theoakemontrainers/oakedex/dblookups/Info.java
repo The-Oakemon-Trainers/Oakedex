@@ -11,12 +11,14 @@ public class Info {
   private DBStatement englishName;
   private DBStatement allNames;
   private DBStatement mainInfo;
+  private DBStatement stats;
   
   public Info(DBConnection c) {
     conn = c;
     englishName = c.prepare(Statements.ENGLISH_NAME);
     allNames = c.prepare(Statements.ALL_NAMES);
-    // mainInfo = c.prepare(Statements.MAIN_INFO);
+    mainInfo = c.prepare(Statements.MAIN_INFO);
+    stats = c.prepare(Statements.STATS);
   }
   
   public String getEnglishName(int pokemonFormID) {
@@ -32,14 +34,14 @@ public class Info {
   }
   
   public ArrayList<String> getNames(int pokemonFormID) {
-    ArrayList<HashMap<String, Object>> names = conn.query(allNames,
+    ArrayList<HashMap<String, String>> names = conn.stringQuery(allNames,
         pokemonFormID);
     ArrayList<String> out = new ArrayList<>();
     
-    for (HashMap<String, Object> map : names) {
-      String spName = (String) map.get("species name");
-      String fmName = (String) map.get("form name");
-      String language = (String) map.get("language");
+    for (HashMap<String, String> map : names) {
+      String spName = map.get("species name");
+      String fmName = map.get("form name");
+      String language = map.get("language");
       if (fmName == null) {
         out.add(language + ": " + spName);
       } else {
@@ -51,6 +53,10 @@ public class Info {
   }
   
   public HashMap<String, String> getMainInfo(int pokemonFormID) {
-
+    return conn.getStringRow(mainInfo, pokemonFormID);
+  }
+  
+  public HashMap<String, String> getStats(int pokemonFormID) {
+    return conn.getStringMap(stats, pokemonFormID);
   }
 }
