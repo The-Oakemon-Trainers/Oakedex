@@ -15,8 +15,8 @@ public class OakSearch extends JFrame implements ActionListener {
 	private Container frame = getContentPane();
 	
 	private JMenuBar menuBar;
-	private JMenu menuBack, menuScreen;
-	private JMenuItem itemMenu, itemExit, itemFull, itemExitFull;
+	private JMenu menuBack, menuScreen, menuSubmit;
+	private JMenuItem itemMenu, itemExit, itemFull, itemExitFull, itemSubmit;
 
 	private JPanel col1, col2, col3;
 	
@@ -99,6 +99,14 @@ public class OakSearch extends JFrame implements ActionListener {
 	  	  			setVisible(true);
 	  	  		}
 	  		  });
+	    
+	    menuSubmit = new JMenu("Submit");
+	    menuBar.add(menuSubmit);
+	    
+	    itemSubmit = new JMenuItem("Submit");
+	    itemSubmit.addActionListener(this);
+	    menuSubmit.add(itemSubmit);
+	    
 	    
 	    //----------------- Other --------------------\\
 	    
@@ -606,6 +614,18 @@ public class OakSearch extends JFrame implements ActionListener {
 	    {
 	       System.exit(0);
 	    }
+		
+		if (ae.getSource() == itemMenu)
+		{
+			dispose();
+			new OakMenu().setVisible(true);
+		}
+		
+		if (ae.getSource() == itemSubmit)
+		{
+			dispose();
+			new OakResults().setVisible(true);
+		}
 	}
 	
 	private void col1EmptySpace()

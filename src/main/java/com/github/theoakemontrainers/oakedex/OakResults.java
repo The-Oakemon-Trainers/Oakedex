@@ -119,6 +119,28 @@ public class OakResults extends JFrame implements ActionListener {
 	    {
 	       System.exit(0);
 	    }
+		
+		if (ae.getSource() == itemMenu)
+		{
+			dispose();
+			new OakMenu().setVisible(true);
+		}
+		
+		if (ae.getSource() == itemSearch)
+		{
+			dispose();
+			new OakSearch().setVisible(true);
+		}
+		
+		if (ae.getSource() instanceof JButton)	// This is called when you hit one of the resulting pokemon names
+		{
+			JButton clicked = (JButton)ae.getSource();	// gets the button that you hit
+			String clickedName = clicked.getText();		// gets the text in the button (the name of the pokemon)
+			
+			// eventually resorts to...
+			dispose();
+			new OakEntry().setVisible(true);
+		}
 	}
 	
 	private void blankCell()

@@ -171,7 +171,7 @@ public class OakEntry extends JFrame implements ActionListener {
    
    public void setGUI(HashMap<String, String> hashyboi)
    {
-	   
+	   lblNum.setText(hashyboi.get("number"));
    }
    
    public void blankCell()
@@ -186,6 +186,18 @@ public class OakEntry extends JFrame implements ActionListener {
       {
          System.exit(0);
       }
+      
+      if (ae.getSource() == itemMenu)
+	  {
+	  	dispose();
+	  	new OakMenu().setVisible(true);
+	  }
+	  
+	  if (ae.getSource() == itemSearch)
+	  {
+	  	dispose();
+	  	new OakSearch().setVisible(true);
+	  }
    }
    
    /*
