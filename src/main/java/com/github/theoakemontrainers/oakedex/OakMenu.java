@@ -17,8 +17,8 @@ public class OakMenu extends JFrame implements ActionListener {
 	private JMenu menuBack, menuScreen;
 	private JMenuItem itemExit, itemFull, itemExitFull;
 	
-	
-//	public static void main (String[] args)				only remove comment for testing
+	// Remove comment to test
+//	public static void main (String[] args)
 //	{
 //		OakMenu menuPage = new OakMenu();
 //		menuPage.setVisible(true);

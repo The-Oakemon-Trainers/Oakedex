@@ -63,7 +63,7 @@ public class OakEntry extends JFrame implements ActionListener {
       
       itemMenu = new JMenuItem("Menu");
       menuBack.add(itemMenu);
-      itemSearch.addActionListener(this);
+      itemMenu.addActionListener(this);
       
       JSeparator separator = new JSeparator();
       menuBack.add(separator);
