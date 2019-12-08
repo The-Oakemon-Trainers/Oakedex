@@ -26,7 +26,9 @@ public class OakSearch extends JFrame implements ActionListener {
 	private JCheckBox chkNormalAbil, chkHiddenAbil, chkNormalType, chkFightingType, chkFlyingType, chkPoisonType, chkGroundType, chkRockType, chkBugType, chkGhostType, chkSteelType, chkFireType, chkWaterType, chkGrassType, chkElectricType, chkPsychicType, chkIceType, chkDragonType, chkDarkType, chkFairyType;
 	
 	// Column 2 fields
-	
+	private JComboBox cmbGender1, cmbGender2, cmbMoves, cmbForm;
+	private JTextField txtMoves1, txtMoves2, txtMoves3, txtMoves4, txtMovesLvl;
+	private JCheckBox chkGen1, chkGen2, chkGen3, chkGen4, chkGen5, chkGen6, chkGen7, chkSameEff, chkLvl, chkEvolution, chkMachine, chkTutor, chkEgg, chkAlolaForm, chkMega;
 	
 	// Column 3 fields
 	
@@ -237,6 +239,133 @@ public class OakSearch extends JFrame implements ActionListener {
 	    
 	    col2 = new JPanel();
 	    col2.setLayout(colLayout);
+	    
+	    col2EmptySpace();
+	    
+	    col2.add(new JLabel("Gender:", SwingConstants.RIGHT));
+	    cmbGender1 = new JComboBox();
+	    col2.add(cmbGender1);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel());
+	    cmbGender2 = new JComboBox();
+	    col2.add(cmbGender2);
+	    col2.add(new JLabel());
+	    
+	    col2EmptySpace();
+	    
+	    col2.add(new JLabel("Regional Info:", SwingConstants.RIGHT));
+	    col2.add(new JLabel());
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Gen 1:", SwingConstants.RIGHT));
+	    chkGen1 = new JCheckBox();
+	    col2.add(chkGen1);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Gen 2:", SwingConstants.RIGHT));
+	    chkGen2 = new JCheckBox();
+	    col2.add(chkGen2);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Gen 3:", SwingConstants.RIGHT));
+	    chkGen3 = new JCheckBox();
+	    col2.add(chkGen3);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Gen 4:", SwingConstants.RIGHT));
+	    chkGen4 = new JCheckBox();
+	    col2.add(chkGen4);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Gen 5:", SwingConstants.RIGHT));
+	    chkGen5 = new JCheckBox();
+	    col2.add(chkGen5);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Gen 6:", SwingConstants.RIGHT));
+	    chkGen6 = new JCheckBox();
+	    col2.add(chkGen6);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Gen 7:", SwingConstants.RIGHT));
+	    chkGen7 = new JCheckBox();
+	    col2.add(chkGen7);
+	    col2.add(new JLabel());
+	    
+	    col2EmptySpace();
+	    
+	    col2.add(new JLabel("Moves:", SwingConstants.RIGHT));
+	    cmbMoves = new JComboBox();
+	    col2.add(cmbMoves);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Any with same effect:", SwingConstants.RIGHT));
+	    chkSameEff = new JCheckBox();
+	    col2.add(chkSameEff);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel());
+	    txtMoves1 = new JTextField();
+	    txtMoves2 = new JTextField();
+	    col2.add(txtMoves1);
+	    col2.add(txtMoves2);
+	    
+	    col2.add(new JLabel());
+	    txtMoves3 = new JTextField();
+	    txtMoves4 = new JTextField();
+	    col2.add(txtMoves3);
+	    col2.add(txtMoves4);
+	    
+	    col2.add(new JLabel("At any level", SwingConstants.RIGHT));
+	    chkLvl = new JCheckBox();
+	    col2.add(chkLvl);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("At level:", SwingConstants.RIGHT));
+	    txtMovesLvl = new JTextField();
+	    col2.add(txtMovesLvl);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Upon evolution", SwingConstants.RIGHT));
+	    chkEvolution = new JCheckBox();
+	    col2.add(chkEvolution);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("From any machine", SwingConstants.RIGHT));
+	    chkMachine = new JCheckBox();
+	    col2.add(chkMachine);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("From a tutor", SwingConstants.RIGHT));
+	    chkTutor = new JCheckBox();
+	    col2.add(chkTutor);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("As an egg", SwingConstants.RIGHT));
+	    chkEgg = new JCheckBox();
+	    col2.add(chkEgg);
+	    col2.add(new JLabel());
+	    
+	    col2EmptySpace();
+	    
+	    col2.add(new JLabel("Form Searching:", SwingConstants.RIGHT));
+	    cmbForm = new JComboBox();
+	    col2.add(cmbForm);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Separate Alola forms", SwingConstants.RIGHT));
+	    chkAlolaForm = new JCheckBox();
+	    col2.add(chkAlolaForm);
+	    col2.add(new JLabel());
+	    
+	    col2.add(new JLabel("Search mega evolutions", SwingConstants.RIGHT));
+	    chkMega = new JCheckBox();
+	    col2.add(chkMega);
+	    col2.add(new JLabel());
+	    
+	    col2EmptySpace();
+	    col2EmptySpace();
 	    
 	    frame.add(col2);
 	    
