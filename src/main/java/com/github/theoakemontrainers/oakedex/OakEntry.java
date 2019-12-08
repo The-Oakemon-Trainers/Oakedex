@@ -177,7 +177,7 @@ public class OakEntry extends JFrame implements ActionListener {
    public void blankCell()
    {
 	   JPanel blank = new JPanel();
-	   blank.setBackground(new Color(102, 102, 102));
+	   blank.setBackground(new Color(126, 0, 0));
 	   frame.add(blank);
    }
    
