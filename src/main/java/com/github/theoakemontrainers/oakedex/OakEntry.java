@@ -25,7 +25,7 @@ public class OakEntry extends JFrame implements ActionListener {
    //private JLabel LBLSTAT, LBLABILITY;
    private JTable statTable, abilityTable;
    
-   private String statVal1, statVal2, statVal3, statVal4, ability1, ability2, ability3;
+   private String statVal1, statVal2, statVal3, statVal4, statVal5, statVal6, ability1, ability2, ability3;
    
    private GridLayout entryLayout = new GridLayout(0, 4, 20, 0);
    
@@ -34,11 +34,11 @@ public class OakEntry extends JFrame implements ActionListener {
    private DataInputStream dataIn;
    private FileInputStream fileIn;
    
-   //public static void main(String[] args) {			main is only for testing
-   //   OakEntry entryPage = new OakEntry();
-   //   entryPage.setVisible(true);
-   //   entryPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   //}
+//   public static void main(String[] args) {			
+//      OakEntry entryPage = new OakEntry();
+//      entryPage.setVisible(true);
+//      entryPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//   }
    
    public OakEntry() {
 	  setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -125,8 +125,9 @@ public class OakEntry extends JFrame implements ActionListener {
       
       //LBLSTAT = new JLabel("Base Stats:");
       //frame.add(LBLSTAT);
-      String[][] data = { { "Strength", statVal1 }, { "Defense", statVal2 },		// I don't know what stats we're going to display.
-         { "etc.", "etc." } };														// As soon as I do, I can update this.
+      String[][] data = { { "HP", statVal1 }, { "Attack", statVal2 },		// I don't know what stats we're going to display.
+         { "Defense", statVal3 }, { "Special Attack", statVal4 }, 
+         { "Special Defense", statVal5 }, { "Speed", statVal6 } };														// As soon as I do, I can update this.
       String[] colHeads = { "Stat", "Value" };
       statTable = new JTable(data, colHeads);
       JScrollPane statPane = new JScrollPane(statTable);
