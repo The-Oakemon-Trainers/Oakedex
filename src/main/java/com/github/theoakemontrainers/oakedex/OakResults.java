@@ -23,12 +23,12 @@ public class OakResults extends JFrame implements ActionListener {
 	private int resultNum = 0;
 	
 	// Remove comment for testing
-	public static void main (String[] args)
-	{
-		OakResults resultsPage = new OakResults();
-		resultsPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		resultsPage.setVisible(true);
-	}
+//	public static void main (String[] args)
+//	{
+//		OakResults resultsPage = new OakResults();
+//		resultsPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		resultsPage.setVisible(true);
+//	}
 	
 	public OakResults()
 	{
@@ -94,14 +94,22 @@ public class OakResults extends JFrame implements ActionListener {
 	    blankCell();
 	    
 	    middle = new JPanel();
-	    middle.setLayout(new GridLayout(0, 1, 0, 3));
-	    frame.add(middle);
-	    addToResults("Torchic");
-	    addToResults("Combusken");
-	    addToResults("Blaziken");
-	    addToResults("Squirtle");
-	    addToResults("Ivysaur");
-	    addToResults("Charizard");
+	    middle.setLayout(new BoxLayout(middle, BoxLayout.Y_AXIS));
+	    frame.add(new JScrollPane(middle, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER));
+	    
+	    // These are just examples. Add more if you want the scroll functionality
+//	    addToResults("Torchic");
+//	    addToResults("Combusken");
+//	    addToResults("Blaziken");
+//	    addToResults("Squirtle");
+//	    addToResults("Ivysaur");
+//	    addToResults("Charizard");
+//	    addToResults("Eevee");
+//	    addToResults("Vaporeon");
+//	    addToResults("Leafeon");
+//	    addToResults("Silveon");
+//	    addToResults("flareon");
+	    
 	    
 	    blankCell();
 	}
@@ -122,15 +130,26 @@ public class OakResults extends JFrame implements ActionListener {
 	
 	public void addToResults(String pName)
 	{
+		JPanel resultPanel = new JPanel();
 		JButton btnResult = new JButton(pName);
 		
 		if ((resultNum % 2) == 0)
+		{
 			btnResult.setBackground(new Color(255, 255, 255));
+			resultPanel.setBackground(new Color(255, 255, 255));
+		}
 		else
+		{
 			btnResult.setBackground(new Color(179, 236, 255));
+			resultPanel.setBackground(new Color(179, 236, 255));
+		}
+			
 		
 		resultNum++;
 		
-		middle.add(btnResult);
+		btnResult.setBorder(BorderFactory.createEmptyBorder());
+		resultPanel.add(btnResult);
+		
+		middle.add(resultPanel);
 	}
 }
