@@ -21,8 +21,8 @@ public class OakSearch extends JFrame implements ActionListener {
 	private JPanel col1, col2, col3;
 	
 	// Column 1 fields
-	private JTextField txtName;
-	private JComboBox cmbAbility, cmbType;
+	private JTextField txtName, txtAbility;
+	private JComboBox cmbType;
 	private JCheckBox chkNormalAbil, chkHiddenAbil, chkNormalType, chkFightingType, chkFlyingType, chkPoisonType, chkGroundType, chkRockType, chkBugType, chkGhostType, chkSteelType, chkFireType, chkWaterType, chkGrassType, chkElectricType, chkPsychicType, chkIceType, chkDragonType, chkDarkType, chkFairyType;
 	
 	// Column 2 fields
@@ -126,8 +126,8 @@ public class OakSearch extends JFrame implements ActionListener {
 	    col1EmptySpace();
 	    
 	    col1.add(new JLabel("Ability:", SwingConstants.RIGHT));
-	    cmbAbility = new JComboBox();
-	    col1.add(cmbAbility);
+	    txtAbility = new JTextField();
+	    col1.add(txtAbility);
 	    col1.add(new JLabel());
 	    
 	    col1.add(new JLabel("As Normal:", SwingConstants.RIGHT));
@@ -142,8 +142,35 @@ public class OakSearch extends JFrame implements ActionListener {
 	    
 	    col1EmptySpace();
 	    
+	    class Option
+	    {
+	    	public String displayMember;
+	    	public int valueMember;
+	    	
+	    	public Option(String display, int value)
+	    	{
+	    		displayMember = display;
+	    		valueMember = value;
+	    	}
+	    	
+	    	public String toString()
+	    	{
+	    		return displayMember.toString();
+	    	}
+	    }
+	    
 	    col1.add(new JLabel("Types:", SwingConstants.RIGHT));
-	    cmbType = new JComboBox();
+	    cmbType = new JComboBox<Option>();
+	    cmbType.addItem(new Option("At least:", 1));
+	    cmbType.addItem(new Option("Only:", 2));
+	    cmbType.addItem(new Option("One of:", 3));
+	    cmbType.addItem(new Option("Only one of:", 4));
+	    cmbType.addItem(new Option("Two of:", 5));
+	    cmbType.addItem(new Option("Not:", 6));
+	    cmbType.addItem(new Option("Not just:", 7));
+	    cmbType.addItem(new Option("Primarily:", 8));
+	    cmbType.addItem(new Option("Secondly:", 9));
+	    
 	    col1.add(cmbType);
 	    col1.add(new JLabel());
 	    
@@ -251,12 +278,26 @@ public class OakSearch extends JFrame implements ActionListener {
 	    col2EmptySpace();
 	    
 	    col2.add(new JLabel("Gender:", SwingConstants.RIGHT));
-	    cmbGender1 = new JComboBox();
+	    cmbGender1 = new JComboBox<Option>();
+	    cmbGender1.addItem(new Option("At least:", 1));
+	    cmbGender1.addItem(new Option("Exactly:", 2));
+	    cmbGender1.addItem(new Option("At most:", 3));
 	    col2.add(cmbGender1);
 	    col2.add(new JLabel());
 	    
 	    col2.add(new JLabel());
-	    cmbGender2 = new JComboBox();
+	    cmbGender2 = new JComboBox<Option>();
+	    cmbGender2.addItem(new Option("", -2));
+	    cmbGender2.addItem(new Option("Genderless", -1));
+	    cmbGender2.addItem(new Option("Never female", 0));
+	    cmbGender2.addItem(new Option("1/8 female", 1));
+	    cmbGender2.addItem(new Option("1/4 female", 2));
+	    cmbGender2.addItem(new Option("3/8 female", 3));
+	    cmbGender2.addItem(new Option("1/2 female", 4));
+	    cmbGender2.addItem(new Option("5/8 female", 5));
+	    cmbGender2.addItem(new Option("3/4 female", 6));
+	    cmbGender2.addItem(new Option("7/8 female", 7));
+	    cmbGender2.addItem(new Option("All female", 8));
 	    col2.add(cmbGender2);
 	    col2.add(new JLabel());
 	    
@@ -304,7 +345,10 @@ public class OakSearch extends JFrame implements ActionListener {
 	    col2EmptySpace();
 	    
 	    col2.add(new JLabel("Moves:", SwingConstants.RIGHT));
-	    cmbMoves = new JComboBox();
+	    cmbMoves = new JComboBox<Option>();
+	    cmbMoves.addItem(new Option("Any of:", 1));
+	    cmbMoves.addItem(new Option("All of:", 2));
+	    cmbMoves.addItem(new Option("None of:", 3));
 	    col2.add(cmbMoves);
 	    col2.add(new JLabel());
 	    
