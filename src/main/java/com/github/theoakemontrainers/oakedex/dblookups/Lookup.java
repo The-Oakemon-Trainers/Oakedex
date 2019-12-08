@@ -6,8 +6,8 @@ import net.nixill.databases.DBConnection;
 import net.nixill.databases.DBConnection.DBStatement;
 
 public class Lookup {
-  public DBConnection conn;
-  public DBStatement alias;
+  private DBConnection conn;
+  private DBStatement alias;
   
   public Lookup(DBConnection c) {
     conn = c;
