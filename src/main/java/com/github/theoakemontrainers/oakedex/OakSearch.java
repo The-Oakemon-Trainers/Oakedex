@@ -40,14 +40,13 @@ public class OakSearch extends JFrame implements ActionListener {
 //	{
 //		OakSearch searchPage = new OakSearch();
 //		searchPage.setVisible(true);
-//		searchPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //	}
 	
 	public OakSearch()
 	{
 		setTitle("Oakedex Search");
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		GridLayout searchLayout = new GridLayout(1, 3, 20, 0);
 		frame.setLayout(searchLayout);
 		frame.setBackground(new Color(126, 0, 0));

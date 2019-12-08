@@ -26,13 +26,13 @@ public class OakResults extends JFrame implements ActionListener {
 //	public static void main (String[] args)
 //	{
 //		OakResults resultsPage = new OakResults();
-//		resultsPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //		resultsPage.setVisible(true);
 //	}
 	
 	public OakResults()
 	{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Oakedex Search Results");
 		GridLayout resultLayout = new GridLayout(1, 3, 20, 0);
 	    frame.setLayout(resultLayout);
@@ -98,17 +98,18 @@ public class OakResults extends JFrame implements ActionListener {
 	    frame.add(new JScrollPane(middle, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER));
 	    
 	    // These are just examples. Add more if you want the scroll functionality
-//	    addToResults("Torchic");
-//	    addToResults("Combusken");
-//	    addToResults("Blaziken");
-//	    addToResults("Squirtle");
-//	    addToResults("Ivysaur");
-//	    addToResults("Charizard");
-//	    addToResults("Eevee");
-//	    addToResults("Vaporeon");
-//	    addToResults("Leafeon");
-//	    addToResults("Silveon");
-//	    addToResults("flareon");
+	    // Remove comments if you want to test it
+	    addToResults("idk", "Torchic");
+	    addToResults("idk", "Combusken");
+	    addToResults("idk", "Blaziken");
+	    addToResults("idk", "Squirtle");
+	    addToResults("idk", "Ivysaur");
+	    addToResults("idk", "Charizard");
+	    addToResults("idk", "Eevee");
+	    addToResults("idk", "Vaporeon");
+	    addToResults("idk", "Leafeon");
+	    addToResults("idk", "Silveon");
+	    addToResults("idk", "flareon");
 	    
 	    
 	    blankCell();
@@ -134,6 +135,7 @@ public class OakResults extends JFrame implements ActionListener {
 		
 		if (ae.getSource() instanceof JButton)	// This is called when you hit one of the resulting pokemon names
 		{
+			System.out.println("Test");
 			JButton clicked = (JButton)ae.getSource();	// gets the button that you hit
 			String clickedName = clicked.getText();		// gets the text in the button (the name of the pokemon)
 			
@@ -150,10 +152,10 @@ public class OakResults extends JFrame implements ActionListener {
 		frame.add(blank);
 	}
 	
-	public void addToResults(String pName)
+	public void addToResults(String pID, String pName)
 	{
 		JPanel resultPanel = new JPanel();
-		JButton btnResult = new JButton(pName);
+		JButton btnResult = new JButton(pID + " " + pName);
 		
 		if ((resultNum % 2) == 0)
 		{
@@ -170,6 +172,7 @@ public class OakResults extends JFrame implements ActionListener {
 		resultNum++;
 		
 		btnResult.setBorder(BorderFactory.createEmptyBorder());
+		btnResult.addActionListener(this);
 		resultPanel.add(btnResult);
 		
 		middle.add(resultPanel);

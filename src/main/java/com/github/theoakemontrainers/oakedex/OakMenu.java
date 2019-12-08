@@ -24,12 +24,12 @@ public class OakMenu extends JFrame implements ActionListener {
 //	{
 //		OakMenu menuPage = new OakMenu();
 //		menuPage.setVisible(true);
-//		menuPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //	}
 	
 	public OakMenu()
 	{
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Oakedex Menu");
 		frame.setLayout(menuLayout);
 		frame.setBackground(new Color(126, 0, 0));

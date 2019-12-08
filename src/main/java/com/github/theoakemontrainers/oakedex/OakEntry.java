@@ -38,11 +38,11 @@ public class OakEntry extends JFrame implements ActionListener {
 //   public static void main(String[] args) {			
 //      OakEntry entryPage = new OakEntry();
 //      entryPage.setVisible(true);
-//      entryPage.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //   }
    
    public OakEntry() {
 	  setExtendedState(JFrame.MAXIMIZED_BOTH);
+	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  setTitle("Oakedex Pokemon Entry");
       frame.setLayout(entryLayout);
       
