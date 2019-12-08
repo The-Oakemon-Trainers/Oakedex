@@ -10,11 +10,13 @@ public class Info {
   private DBConnection conn;
   private DBStatement englishName;
   private DBStatement allNames;
+  private DBStatement mainInfo;
   
-  public Info(DBConnection c, Lookup l) {
+  public Info(DBConnection c) {
     conn = c;
     englishName = c.prepare(Statements.ENGLISH_NAME);
     allNames = c.prepare(Statements.ALL_NAMES);
+    // mainInfo = c.prepare(Statements.MAIN_INFO);
   }
   
   public String getEnglishName(int pokemonFormID) {
