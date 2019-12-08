@@ -296,7 +296,12 @@ public class DBConnection {
    */
   public HashMap<String, Object> getRow(String query) {
     try {
-      return getRow(stmt.executeQuery(query));
+      ResultSet res = stmt.executeQuery(query);
+      if (res.next()) {
+        return getRow(stmt.executeQuery(query));
+      } else {
+        return null;
+      }
     } catch (SQLException ex) {
       throw new DBException(ex);
     }
@@ -314,8 +319,17 @@ public class DBConnection {
    * @return The row, as described above.
    */
   public HashMap<String, Object> getRow(DBStatement dbst, Object... objs) {
-    dbst.populate(objs);
-    return getRow(dbst.run());
+    try {
+      dbst.populate(objs);
+      ResultSet res = dbst.run();
+      if (res.next()) {
+        return getRow(res);
+      } else {
+        return null;
+      }
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
   }
   
   private HashMap<String, Object> getRow(ResultSet res) {
@@ -348,7 +362,12 @@ public class DBConnection {
    */
   public HashMap<String, String> getStringRow(String query) {
     try {
-      return getStringRow(stmt.executeQuery(query));
+      ResultSet res = stmt.executeQuery(query);
+      if (res.next()) {
+        return getStringRow(res);
+      } else {
+        return null;
+      }
     } catch (SQLException ex) {
       throw new DBException(ex);
     }
@@ -367,8 +386,17 @@ public class DBConnection {
    */
   public HashMap<String, String> getStringRow(DBStatement dbst,
       Object... objs) {
-    dbst.populate(objs);
-    return getStringRow(dbst.run());
+    try {
+      dbst.populate(objs);
+      ResultSet res = dbst.run();
+      if (res.next()) {
+        return getStringRow(res);
+      } else {
+        return null;
+      }
+    } catch (SQLException e) {
+      throw new DBException(e);
+    }
   }
   
   private HashMap<String, String> getStringRow(ResultSet res) {
