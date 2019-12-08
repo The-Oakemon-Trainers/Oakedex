@@ -528,6 +528,43 @@ public class DBConnection {
     }
   }
   
+  /**
+   * Changes the database and returns the number of rows changed.
+   * <p>
+   * Returns 0 if a DDL statement was used instead.
+   * 
+   * @param sql
+   *   The statement to execute
+   * @return The number of rows affected
+   */
+  public int update(String sql) {
+    try {
+      return stmt.executeUpdate(sql);
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
+  }
+  
+  /**
+   * Changes the database and returns the number of rows changed.
+   * <p>
+   * Returns 0 if a DDL statement was used instead.
+   * 
+   * @param dbst
+   *   A prepared statement created by {@link #prepare(String)}.
+   * @param objs
+   *   The parameters to use in the statement.
+   * @return The number of rows affected
+   */
+  public int update(DBStatement dbst, Object... objs) {
+    try {
+      dbst.populate(objs);
+      return dbst.psmt.executeUpdate();
+    } catch (SQLException ex) {
+      throw new DBException(ex);
+    }
+  }
+  
   public class DBStatement {
     private PreparedStatement psmt;
     
