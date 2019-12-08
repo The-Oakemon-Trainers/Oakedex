@@ -49,4 +49,8 @@ public class Info {
     
     return out;
   }
+  
+  public HashMap<String, String> getMainInfo(int pokemonFormID) {
+
+  }
 }

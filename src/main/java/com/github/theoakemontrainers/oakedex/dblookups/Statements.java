@@ -24,6 +24,7 @@ public class Statements {
       + "   join pokemon_form_names on pokemon_forms.id = pokemon_form_names.pokemon_form_id"
       + "     and pokemon_species_names.local_language_id = pokemon_form_names.local_language_id"
       + "   join language_names on pokemon_form_names.local_language_id = language_names.language_id"
+      + "     and language_names.local_language_id = 9"
       + " where pokemon_forms.id = ?;";
   
   public static final String MAIN_INFO = "SELECT"
