@@ -26,5 +26,30 @@ public class Statements {
       + "   join language_names on pokemon_form_names.local_language_id = language_names.language_id"
       + " where pokemon_forms.id = ?;";
   
-  public static final String MAIN_INFO = "being written";
+  public static final String MAIN_INFO = "SELECT"
+      + "  spec.id AS \"number\"," + "  t1n.name AS \"type 1\","
+      + "  t2n.name AS \"type 2\"," + "  a1n.name AS \"ability 1\","
+      + "  a2n.name AS \"ability 2\","
+      + "  a3n.name AS \"hidden ability\","
+      + "  spec.gender_rate AS \"gender ratio\","
+      + "  spec.generation_id AS \"generation\""
+      + "FROM pokemon_species AS spec" + "  JOIN pokemon AS pkmn"
+      + "    ON spec.id = pkmn.species_id" + "  JOIN pokemon_forms AS form"
+      + "    ON pkmn.id = form.pokemon_id" + "  JOIN pokemon_types AS ptyp"
+      + "    ON pkmn.id = ptyp.pokemon_id" + "  JOIN type_names AS t1n"
+      + "    ON ptyp.type_id_1 = t1n.type_id"
+      + "      AND t1n.local_language_id = 9"
+      + "  LEFT JOIN type_names AS t2n"
+      + "    ON ptyp.type_id_2 = t2n.type_id"
+      + "      AND t2n.local_language_id = 9"
+      + "  JOIN pokemon_abilities AS pabi"
+      + "    ON pkmn.id = pabi.pokemon_id" + "  JOIN ability_names AS a1n"
+      + "    ON pabi.ability_id_1 = a1n.ability_id"
+      + "      AND a1n.local_language_id = 9"
+      + "  LEFT JOIN ability_names AS a2n"
+      + "    ON pabi.ability_id_2 = a2n.ability_id"
+      + "      AND a2n.local_language_id = 9"
+      + "  LEFT JOIN ability_names AS a3n"
+      + "    ON pabi.hidden_ability_id = a3n.ability_id"
+      + "      AND a3n.local_language_id = 9" + "WHERE form.id = ?";
 }
