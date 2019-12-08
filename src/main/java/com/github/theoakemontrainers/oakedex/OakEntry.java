@@ -26,6 +26,7 @@ public class OakEntry extends JFrame implements ActionListener {
    //private JLabel LBLSTAT, LBLABILITY;
    private JTable statTable, abilityTable;
    
+   private String name, number, type1, type2, gender, generation, region;
    private String statVal1, statVal2, statVal3, statVal4, statVal5, statVal6, ability1, ability2, ability3;
    
    private GridLayout entryLayout = new GridLayout(0, 4, 20, 0);
@@ -106,19 +107,19 @@ public class OakEntry extends JFrame implements ActionListener {
       
       blankCell();
       
-      lblName = new JLabel("Name", SwingConstants.CENTER);
+      lblName = new JLabel(name, SwingConstants.CENTER);
       frame.add(lblName);
       
-      lblNum = new JLabel("Number", SwingConstants.CENTER);
+      lblNum = new JLabel(number, SwingConstants.CENTER);
       frame.add(lblNum);
       
       blankCell();
       blankCell();
       
-      lblType1 = new JLabel("Type1", SwingConstants.CENTER);
+      lblType1 = new JLabel(type1, SwingConstants.CENTER);
       frame.add(lblType1);
       
-      lblType2 = new JLabel("", SwingConstants.CENTER);
+      lblType2 = new JLabel(type2, SwingConstants.CENTER);
       frame.add(lblType2);
       
       blankCell();
@@ -148,30 +149,34 @@ public class OakEntry extends JFrame implements ActionListener {
       blankCell();
       blankCell();
       
-      lblGender = new JLabel("Gender Ratio: ", SwingConstants.CENTER);
+      lblGender = new JLabel("Gender Ratio: " + gender, SwingConstants.CENTER);
       frame.add(lblGender);
       
-      lblGeneration = new JLabel("Generation: ", SwingConstants.CENTER);
+      lblGeneration = new JLabel("Generation: " + generation, SwingConstants.CENTER);
       frame.add(lblGeneration);
       
       blankCell();
       blankCell();
       
-      lblRegion = new JLabel("Region: ", SwingConstants.CENTER);
+      lblRegion = new JLabel("Region: " + region, SwingConstants.CENTER);
       frame.add(lblRegion);  
       
       frame.add(new JLabel());
       
       blankCell();
-      
-      //------------ Set Data ------------------\\
-      
-//      setGUI();
    }
    
    public void setGUI(HashMap<String, String> hashyboi)
    {
-	   lblNum.setText(hashyboi.get("number"));
+	   number = hashyboi.get("number");
+	   type1 = hashyboi.get("type 1");
+	   type2 = hashyboi.get("type 2");
+	   ability1 = hashyboi.get("ability 1");
+	   ability2 = hashyboi.get("ability 2");
+	   ability3 = hashyboi.get("hidden ability");
+	   gender = hashyboi.get("gender ratio");
+	   generation = hashyboi.get("generation");
+	   name = OakMain.info.getEnglishName(Integer.parseInt(hashyboi.get("number")));
    }
    
    public void blankCell()
