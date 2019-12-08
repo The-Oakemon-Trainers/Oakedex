@@ -164,7 +164,7 @@ public class OakEntry extends JFrame implements ActionListener {
       //lblRegion.setAlignment(Component.CENTER);
       lblRegion.setEditable(false);
       lblRegion.setOpaque(false);
-      frame.add(lblRegion);  
+      frame.add(new JScrollPane(lblRegion));
       
       frame.add(new JLabel());
       
