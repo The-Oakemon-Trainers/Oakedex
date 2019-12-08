@@ -100,16 +100,16 @@ public class OakResults extends JFrame implements ActionListener {
 	    
 	    // These are just examples. Add more if you want the scroll functionality
 	    // Remove comments if you want to test it
-	    addToResults("255", "Torchic");
-	    addToResults("256", "Combusken");
-	    addToResults("257", "Blaziken");
-	    addToResults("007", "Squirtle");
-	    addToResults("002", "Ivysaur");
-	    addToResults("006", "Charizard");
-	    addToResults("133", "Eevee");
-	    addToResults("134", "Vaporeon");
-	    addToResults("470", "Leafeon");
-	    addToResults("136", "flareon");
+//	    addToResults("255", "Torchic");
+//	    addToResults("256", "Combusken");
+//	    addToResults("257", "Blaziken");
+//	    addToResults("007", "Squirtle");
+//	    addToResults("002", "Ivysaur");
+//	    addToResults("006", "Charizard");
+//	    addToResults("133", "Eevee");
+//	    addToResults("134", "Vaporeon");
+//	    addToResults("470", "Leafeon");
+//	    addToResults("136", "flareon");
 	    
 	    
 	    blankCell();
