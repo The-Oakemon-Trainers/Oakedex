@@ -8,6 +8,7 @@ import java.util.Map.Entry;
 
 import com.github.theoakemontrainers.oakedex.dblookups.Info;
 import com.github.theoakemontrainers.oakedex.dblookups.Lookup;
+import com.github.theoakemontrainers.oakedex.dblookups.Search;
 
 import net.nixill.databases.DBConnection;
 
@@ -15,21 +16,22 @@ public class DBTest {
   private static final DBConnection conn;
   private static final Lookup look;
   private static final Info info;
-  // private static final Search search;
+  private static final Search search;
   
   // this has to be up here but is ok
   static {
     conn = new DBConnection("pokedex.db");
     look = new Lookup(conn);
     info = new Info(conn);
-    // search = new Search(conn);
+    search = new Search(conn);
     
   }
   
   public static void main(String[] args) {
     // test1();
     // test2();
-    test3();
+    // test3();
+    test4();
   }
   
   public static void test1() {
@@ -87,6 +89,10 @@ public class DBTest {
     deepPrint(info.getStats(135));
     System.out.println();
     deepPrint(info.getDexNumber(135));
+  }
+  
+  public static void test4() {
+    search.resetSearch();
   }
   
   public static void deepPrint(Object obj) {
