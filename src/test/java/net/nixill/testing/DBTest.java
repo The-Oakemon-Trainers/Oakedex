@@ -10,8 +10,8 @@ import net.nixill.databases.DBConnection;
 
 public class DBTest {
   public static void main(String[] args) {
-    // test1();
-    test2();
+    test1();
+    // test2();
   }
   
   public static void test1() {
@@ -31,8 +31,8 @@ public class DBTest {
         conn.getResult("select identifier from languages where id = 1;"));
     
     // test getRow()
-    HashMap<String, Object> row = conn
-        .getRow("select * from languages where id = 1");
+    HashMap<String, Object> row = conn.getRow(
+        "select id as \"language ID\", identifier as \"language identifier\" from languages where id = 1");
     for (Entry<String, Object> ent : row.entrySet()) {
       System.out.println(ent.getKey() + ": " + ent.getValue().toString());
     }
