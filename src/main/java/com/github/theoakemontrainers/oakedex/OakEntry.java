@@ -34,15 +34,14 @@ public class OakEntry extends JFrame implements ActionListener {
    private DataInputStream dataIn;
    private FileInputStream fileIn;
    
-   public static void main(String[] args) {
-      OakEntry page = new OakEntry();
-      page.setVisible(true);
-      
-   }
+   //public static void main(String[] args) {			main is only for testing
+   //   OakEntry page = new OakEntry();
+   //   page.setVisible(true);
+   //   page.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+   //}
    
    public OakEntry() {
 	  setExtendedState(JFrame.MAXIMIZED_BOTH);
-	  setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	  setTitle("Pokemon Entry");
       frame.setLayout(entryLayout);
       
