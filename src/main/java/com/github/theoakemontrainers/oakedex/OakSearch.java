@@ -723,7 +723,7 @@ public class OakSearch extends JFrame implements ActionListener {
 			{
 				Integer val = null;
 				try {
-					Integer.parseInt(txtNumber.getText());
+					val = Integer.parseInt(txtNumber.getText());
 				} catch (NumberFormatException ex) {
 					// do nothing
 				}

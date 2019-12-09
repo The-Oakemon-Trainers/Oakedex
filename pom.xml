@@ -63,6 +63,34 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.1</version>
             </plugin>
+            <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+                <archive>
+                <manifest>
+                    <mainClass>com.github.theoakemontrainers.oakedex.OakMain</mainClass>
+                </manifest>
+                </archive>
+                <descriptorRefs>
+                <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+            </configuration>
+            </plugin>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                        <classpathPrefix>src/main/java/</classpathPrefix>
+                        <mainClass>com.github.theoakemontrainers.oakedex.OakMain</mainClass>
+                    </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <reporting>
