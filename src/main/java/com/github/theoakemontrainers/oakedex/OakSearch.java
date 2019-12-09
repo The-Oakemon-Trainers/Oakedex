@@ -720,6 +720,11 @@ public class OakSearch extends JFrame implements ActionListener {
 				OakMain.search.filterIncludedDex(val, chkIn1.isSelected(), chkIn2.isSelected(), chkIn3.isSelected(), chkIn4.isSelected(), chkIn5.isSelected(), chkIn6.isSelected(), chkIn7.isSelected(), chkIn8.isSelected(), chkIn9.isSelected(), chkIn11.isSelected(), chkIn12.isSelected(), chkIn13.isSelected(), chkIn14.isSelected(), chkIn15.isSelected(), chkIn16.isSelected(), chkIn17.isSelected(), chkIn18.isSelected(), chkIn19.isSelected(), chkIn20.isSelected(), chkIn21.isSelected(), chkIn22.isSelected(), chkIn23.isSelected());
 			}
 			
+			if (chkEx2.isSelected() || chkEx3.isSelected() || chkEx4.isSelected() || chkEx5.isSelected() || chkEx6.isSelected() || chkEx7.isSelected() || chkEx8.isSelected() || chkEx9.isSelected() || chkEx11.isSelected() || chkEx12.isSelected() || chkEx13.isSelected() || chkEx14.isSelected() || chkEx15.isSelected() || chkEx16.isSelected() || chkEx17.isSelected() || chkEx18.isSelected() || chkEx19.isSelected() || chkEx20.isSelected() || chkEx21.isSelected() || chkEx22.isSelected() || chkEx23.isSelected())
+			{
+				OakMain.search.filterExcludedDex(chkEx2.isSelected(), chkEx3.isSelected(), chkEx4.isSelected(), chkEx5.isSelected(), chkEx6.isSelected(), chkEx7.isSelected(), chkEx8.isSelected(), chkEx9.isSelected(), chkEx11.isSelected(), chkEx12.isSelected(), chkEx13.isSelected(), chkEx14.isSelected(), chkEx15.isSelected(), chkEx16.isSelected(), chkEx17.isSelected(), chkEx18.isSelected(), chkEx19.isSelected(), chkEx20.isSelected(), chkEx21.isSelected(), chkEx22.isSelected(), chkEx23.isSelected());
+			}
+			
 			//Testing ComboBox value 
 			//System.out.println(cmbGender2.getSelectedItem().hashCode());
 			
