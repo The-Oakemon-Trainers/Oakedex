@@ -214,6 +214,17 @@ WHERE id NOT IN
   WHERE pokemon_id IN search_type_results);
 */
 
+-- Search by gender
+DELETE FROM search_results
+WHERE id NOT IN
+  (SELECT pokemon_forms.id
+  FROM pokemon_forms
+    JOIN pokemon
+      ON pokemon_forms.pokemon_id = pokemon.id
+    JOIN pokemon_species
+      ON pokemon.species_id = pokemon_species
+  WHERE pokemon_species.gender_rate BETWEEN ? AND ?);
+
 -- Get results
 SELECT
   pokemon_forms.id,
