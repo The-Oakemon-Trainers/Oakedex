@@ -355,53 +355,65 @@ public class OakSearch extends JFrame implements ActionListener {
 	    cmbMoves.addItem(new Option("Any of:", 1));
 	    cmbMoves.addItem(new Option("All of:", 2));
 	    cmbMoves.addItem(new Option("None of:", 3));
+	    cmbMoves.enable(false); //<------------------------------------
 	    col2.add(cmbMoves);
 	    col2.add(new JLabel());
 	    
 	    col2.add(new JLabel("Any with same effect:", SwingConstants.RIGHT));
 	    chkSameEff = new JCheckBox();
+	    chkSameEff.setEnabled(false); //<------------------------------------
 	    col2.add(chkSameEff);
 	    col2.add(new JLabel());
 	    
 	    col2.add(new JLabel());
 	    txtMoves1 = new JTextField();
 	    txtMoves2 = new JTextField();
+	    txtMoves1.enable(false); //<----------------------------------
+	    txtMoves2.enable(false); //<---------------------------------
 	    col2.add(txtMoves1);
 	    col2.add(txtMoves2);
 	    
 	    col2.add(new JLabel());
 	    txtMoves3 = new JTextField();
 	    txtMoves4 = new JTextField();
+	    txtMoves3.enable(false); //<---------------------------------
+	    txtMoves4.enable(false); //<---------------------------------
 	    col2.add(txtMoves3);
 	    col2.add(txtMoves4);
 	    
 	    col2.add(new JLabel("At any level", SwingConstants.RIGHT));
 	    chkLvl = new JCheckBox();
+	    chkLvl.setEnabled(false); //<---------------------------
 	    col2.add(chkLvl);
 	    col2.add(new JLabel());
 	    
 	    col2.add(new JLabel("At level:", SwingConstants.RIGHT));
 	    txtMovesLvl = new JTextField();
+	    txtMovesLvl.enable(false); //<----------------------------
 	    col2.add(txtMovesLvl);
 	    col2.add(new JLabel());
 	    
 	    col2.add(new JLabel("Upon evolution", SwingConstants.RIGHT));
 	    chkEvolution = new JCheckBox();
+	    chkEvolution.setEnabled(false); //<--------------------------------
 	    col2.add(chkEvolution);
 	    col2.add(new JLabel());
 	    
 	    col2.add(new JLabel("From any machine", SwingConstants.RIGHT));
 	    chkMachine = new JCheckBox();
+	    chkMachine.setEnabled(false); //<----------------------------
 	    col2.add(chkMachine);
 	    col2.add(new JLabel());
 	    
 	    col2.add(new JLabel("From a tutor", SwingConstants.RIGHT));
 	    chkTutor = new JCheckBox();
+	    chkTutor.setEnabled(false); //<---------------------------
 	    col2.add(chkTutor);
 	    col2.add(new JLabel());
 	    
 	    col2.add(new JLabel("As an egg", SwingConstants.RIGHT));
 	    chkEgg = new JCheckBox();
+	    chkEgg.setEnabled(false); //<--------------------------
 	    col2.add(chkEgg);
 	    col2.add(new JLabel());
 	    
@@ -414,11 +426,13 @@ public class OakSearch extends JFrame implements ActionListener {
 	    
 	    col2.add(new JLabel("Separate Alola forms", SwingConstants.RIGHT));
 	    chkAlolaForm = new JCheckBox();
+	    chkAlolaForm.setEnabled(false); //<--------------------------------
 	    col2.add(chkAlolaForm);
 	    col2.add(new JLabel());
 	    
 	    col2.add(new JLabel("Search mega evolutions", SwingConstants.RIGHT));
 	    chkMega = new JCheckBox();
+	    chkMega.setEnabled(false); //<-------------------------------------
 	    col2.add(chkMega);
 	    col2.add(new JLabel());
 	    
@@ -449,6 +463,7 @@ public class OakSearch extends JFrame implements ActionListener {
 	    subPan1 = new JPanel();
 	    chkIn1 = new JCheckBox();
 	    chkEx1 = new JCheckBox();
+	    chkEx1.setEnabled(false); //<-------------------------
 	    subPan1.add(chkIn1);
 	    subPan1.add(chkEx1);
 	    col3.add(subPan1);
@@ -530,6 +545,8 @@ public class OakSearch extends JFrame implements ActionListener {
 	    subPan10 = new JPanel();
 	    chkIn10 = new JCheckBox();
 	    chkEx10 = new JCheckBox();
+	    chkIn10.setEnabled(false); //<-----------------------------
+	    chkEx10.setEnabled(false); //<---------------------------
 	    subPan10.add(chkIn10);
 	    subPan10.add(chkEx10);
 	    col3.add(subPan10);
@@ -695,6 +712,12 @@ public class OakSearch extends JFrame implements ActionListener {
 			if (chkGen1.isSelected() || chkGen2.isSelected() || chkGen3.isSelected() || chkGen4.isSelected() || chkGen5.isSelected() || chkGen6.isSelected() || chkGen7.isSelected())
 			{
 				OakMain.search.filterGeneration(chkGen1.isSelected(), chkGen2.isSelected(), chkGen3.isSelected(), chkGen4.isSelected(), chkGen5.isSelected(), chkGen6.isSelected(), chkGen7.isSelected());
+			}
+			
+			if (txtNumber.getText().length() > 0 || chkIn1.isSelected() || chkIn2.isSelected() || chkIn3.isSelected() || chkIn4.isSelected() || chkIn5.isSelected() || chkIn6.isSelected() || chkIn7.isSelected() || chkIn8.isSelected() || chkIn9.isSelected() || chkIn11.isSelected() || chkIn12.isSelected() || chkIn13.isSelected() || chkIn14.isSelected() || chkIn15.isSelected() || chkIn16.isSelected() || chkIn17.isSelected() || chkIn18.isSelected() || chkIn19.isSelected() || chkIn20.isSelected() || chkIn21.isSelected() || chkIn22.isSelected() || chkIn23.isSelected())
+			{
+				int val = Integer.parseInt(txtNumber.getText());
+				OakMain.search.filterIncludedDex(val, chkIn1.isSelected(), chkIn2.isSelected(), chkIn3.isSelected(), chkIn4.isSelected(), chkIn5.isSelected(), chkIn6.isSelected(), chkIn7.isSelected(), chkIn8.isSelected(), chkIn9.isSelected(), chkIn11.isSelected(), chkIn12.isSelected(), chkIn13.isSelected(), chkIn14.isSelected(), chkIn15.isSelected(), chkIn16.isSelected(), chkIn17.isSelected(), chkIn18.isSelected(), chkIn19.isSelected(), chkIn20.isSelected(), chkIn21.isSelected(), chkIn22.isSelected(), chkIn23.isSelected());
 			}
 			
 			//Testing ComboBox value 
