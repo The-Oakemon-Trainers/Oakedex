@@ -74,9 +74,8 @@ public class Statements {
       + "ON pokemon.id = pokemon_forms.pokemon_id\n"
       + "WHERE pokemon_forms.pokemon_id = ?;";
   
-  public static final String RESET_SEARCH = "DROP TABLE IF EXISTS search_results;"
-      + "CREATE TEMP TABLE search_results AS"
-      + "  SELECT id FROM pokemon_forms;";
+  public static final String RESET_SEARCH = "DELETE FROM search_results;\n"
+      + "INSERT INTO search_results\n" + "SELECT id FROM pokemon_forms;\n";
   
   public static final String SEARCH_COUNT = "SELECT count(id) FROM search_results;";
   
@@ -86,11 +85,11 @@ public class Statements {
       + "on pokemon_forms.pokemon_id = pokemon_aliases.pokemon_id\n"
       + "where alias like ?);\n";
   
-  public static final String SEARCH_ABILITIES_CREATE = "CREATE TEMP TABLE search_abilities AS\n"
-      + "SELECT ability_id, name FROM ability_names\n"
-      + "WHERE local_language_id = 9\n" + "AND lower(name) LIKE ?;\n"
-      + "CREATE TEMP TABLE search_ability_results (\n" + "id INTEGER\n"
-      + ");\n";
+  public static final String SEARCH_ABILITIES_RESET = "DELETE FROM search_abilities;\n"
+      + "INSERT INTO search_abilities\n"
+      + "SELECT ability_id FROM ability_names\n"
+      + "WHERE local_language_id = 9\n" + "AND lower(name) LIKE 'blaze';\n"
+      + "DELETE FROM search_ability_results;\n";
   
   public static final String SEARCH_ABILITIES_NORMAL = "INSERT INTO search_ability_results\n"
       + "SELECT id FROM pokemon_abilities\n" + "JOIN pokemon_forms\n"
@@ -106,11 +105,8 @@ public class Statements {
   public static final String SEARCH_ABILITIES_FILTER = "DELETE FROM search_results\n"
       + "WHERE id NOT IN search_ability_results;\n";
   
-  public static final String SEARCH_ABILITIES_DROP = "DROP TABLE search_abilities;\n"
-      + "DROP TABLE search_ability_results;";
-  
-  public static final String SEARCH_TYPES_START = "CREATE TEMP TABLE search_types (id INTEGER PRIMARY KEY REFERENCES types);\n"
-      + "CREATE TEMP TABLE search_type_results (id INTEGER PRIMARY KEY REFERENCES pokemon);\n";
+  public static final String SEARCH_TYPES_START = "DELETE FROM search_types;\n"
+      + "DELETE FROM search_type_results;\n";
   
   public static final String SEARCH_TYPES_AT_LEAST = "INSERT INTO search_type_results\n"
       + "SELECT pokemon_id\n" + "FROM pokemon_types\n"
@@ -159,9 +155,6 @@ public class Statements {
   public static final String SEARCH_TYPES_GET_RESULTS = "DELETE FROM search_results\n"
       + "WHERE id NOT IN\n" + "(SELECT id\n" + "FROM pokemon_forms\n"
       + "WHERE pokemon_id IN search_type_results);\n";
-  
-  public static final String SEARCH_TYPES_END = "DROP TABLE search_types;\n"
-      + "DROP TABLE search_type_results;\n";
   
   public static final String SEARCH_EXECUTE = "SELECT\n"
       + "pokemon_forms.id,\n" + "pokemon_species_names.name,\n"

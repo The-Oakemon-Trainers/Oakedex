@@ -16,7 +16,6 @@ public class Search {
   private DBStatement searchAbilityNormal;
   private DBStatement searchAbilityHidden;
   private DBStatement searchAbilityFilter;
-  private DBStatement searchAbilityEnd;
   private DBStatement searchTypesStart;
   private DBStatement searchTypesAtLeast;
   private DBStatement searchTypesOneOf;
@@ -28,7 +27,6 @@ public class Search {
   private DBStatement searchTypesPrimarily;
   private DBStatement searchTypesSecondarily;
   private DBStatement searchTypesGetResults;
-  private DBStatement searchTypesEnd;
   private DBStatement results;
   
   public Search(DBConnection c) {
@@ -36,11 +34,10 @@ public class Search {
     reset = c.prepare(Statements.RESET_SEARCH);
     count = c.prepare(Statements.SEARCH_COUNT);
     searchName = c.prepare(Statements.SEARCH_NAMES);
-    searchAbilityStart = c.prepare(Statements.SEARCH_ABILITIES_CREATE);
+    searchAbilityStart = c.prepare(Statements.SEARCH_ABILITIES_RESET);
     searchAbilityNormal = c.prepare(Statements.SEARCH_ABILITIES_NORMAL);
     searchAbilityHidden = c.prepare(Statements.SEARCH_ABILITIES_HIDDEN);
     searchAbilityFilter = c.prepare(Statements.SEARCH_ABILITIES_FILTER);
-    searchAbilityEnd = c.prepare(Statements.SEARCH_ABILITIES_DROP);
     searchTypesStart = c.prepare(Statements.SEARCH_TYPES_START);
     searchTypesAtLeast = c.prepare(Statements.SEARCH_TYPES_AT_LEAST);
     searchTypesOneOf = c.prepare(Statements.SEARCH_TYPES_ONE_OF);
@@ -53,7 +50,6 @@ public class Search {
     searchTypesSecondarily = c
         .prepare(Statements.SEARCH_TYPES_SECONDARILY);
     searchTypesGetResults = c.prepare(Statements.SEARCH_TYPES_GET_RESULTS);
-    searchTypesEnd = c.prepare(Statements.SEARCH_TYPES_END);
     results = c.prepare(Statements.SEARCH_EXECUTE);
   }
   
@@ -77,7 +73,6 @@ public class Search {
     }
     
     conn.update(searchAbilityFilter);
-    conn.update(searchAbilityEnd);
     
     return (int) conn.getResult(count);
   }
@@ -146,7 +141,6 @@ public class Search {
     
     conn.update(typeStatement);
     conn.update(searchTypesGetResults);
-    conn.update(searchTypesEnd);
     
     return (int) conn.getResult(count);
   }

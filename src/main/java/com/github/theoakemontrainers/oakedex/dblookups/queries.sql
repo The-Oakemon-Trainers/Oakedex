@@ -93,8 +93,8 @@ WHERE pokemon_forms.pokemon_id = ?;
 */
 
 -- Reset search table
-DROP TABLE IF EXISTS search_results;
-CREATE TEMP TABLE search_results AS
+DELETE FROM search_results;
+INSERT INTO search_results
   SELECT id FROM pokemon_forms;
 
 -- Search by name
@@ -109,14 +109,13 @@ WHERE id NOT IN
 -- */
 
 /*
--- Search by ability (create tables)
-CREATE TEMP TABLE search_abilities AS
+-- Search by ability (reset tables)
+DELETE FROM search_abilities;
+INSERT INTO search_abilities
 SELECT ability_id FROM ability_names
 WHERE local_language_id = 9
   AND lower(name) LIKE 'blaze';
-CREATE TEMP TABLE search_ability_results (
-  id INTEGER
-);
+DELETE FROM search_ability_results;
 
 -- Search by ability (normal)
 INSERT INTO search_ability_results
@@ -136,16 +135,12 @@ WHERE pokemon_abilities.hidden_ability_id IN search_abilities;
 -- Filter by searched abilities
 DELETE FROM search_results
 WHERE id NOT IN search_ability_results;
-
--- Search by ability (drop tables)
-DROP TABLE search_abilities;
-DROP TABLE search_ability_results;
 -- */
 
 /*
 -- Search by type (create tables)
-CREATE TEMP TABLE search_types (id INTEGER PRIMARY KEY REFERENCES types);
-CREATE TEMP TABLE search_type_results (id INTEGER PRIMARY KEY REFERENCES pokemon);
+DELETE FROM search_types;
+DELETE FROM search_type_results;
 
 -- Search by type ("At least:")
 INSERT INTO search_type_results
@@ -217,10 +212,6 @@ WHERE id NOT IN
   (SELECT id
   FROM pokemon_forms
   WHERE pokemon_id IN search_type_results);
-
--- Search by type (drop tables)
-DROP TABLE search_types;
-DROP TABLE search_type_results;
 */
 
 -- Get results
