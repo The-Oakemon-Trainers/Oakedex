@@ -111,11 +111,13 @@ WHERE id NOT IN
 /*
 -- Search by ability (reset tables)
 DELETE FROM search_abilities;
+DELETE FROM search_ability_results;
+
+-- Search by ability (refill tables)
 INSERT INTO search_abilities
 SELECT ability_id FROM ability_names
 WHERE local_language_id = 9
   AND lower(name) LIKE ?;
-DELETE FROM search_ability_results;
 
 -- Search by ability (normal)
 INSERT INTO search_ability_results
@@ -235,6 +237,9 @@ WHERE id NOT IN
     JOIN pokemon_species
       ON pokemon.species_id = pokemon_species.id
   WHERE pokemon_species.generation_id IN %s);
+
+-- Search by moves
+
 
 -- Get results
 SELECT

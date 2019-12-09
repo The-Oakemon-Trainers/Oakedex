@@ -86,10 +86,11 @@ public class Statements {
       + "where alias like ?);\n";
   
   public static final String SEARCH_ABILITIES_RESET = "DELETE FROM search_abilities;\n"
-      + "INSERT INTO search_abilities\n"
-      + "SELECT ability_id FROM ability_names\n"
-      + "WHERE local_language_id = 9\n" + "AND lower(name) LIKE ?;\n"
       + "DELETE FROM search_ability_results;\n";
+  
+  public static final String SEARCH_ABILITIES_GET = "INSERT INTO search_abilities\n"
+      + "SELECT ability_id FROM ability_names\n"
+      + "WHERE local_language_id = 9\n" + "AND lower(name) LIKE ?;\n";
   
   public static final String SEARCH_ABILITIES_NORMAL = "INSERT INTO search_ability_results\n"
       + "SELECT id FROM pokemon_abilities\n" + "JOIN pokemon_forms\n"
