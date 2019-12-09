@@ -292,7 +292,7 @@ public class Search {
     
     for (HashMap<String, Object> map : searchResults) {
       String output = (Integer) map.get("id") + " " + map.get("name");
-      String fmName = (String) map.get("form name");
+      String fmName = (String) map.get("form_name");
       if (fmName != null) {
         output += " (" + fmName + ")";
       }
