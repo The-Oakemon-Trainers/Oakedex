@@ -198,7 +198,7 @@ public class Search {
     return (int) conn.getResult(count);
   }
   
-  public int filterIncludedDex(String number, boolean national,
+  public int filterIncludedDex(Integer number, boolean national,
       boolean johto_2, boolean johto_4, boolean hoenn_3, boolean hoenn_6,
       boolean sinnoh_dp, boolean sinnoh_pt, boolean unova_bw1,
       boolean unova_bw2, boolean kalos_coastal, boolean kalos_central,
@@ -235,7 +235,7 @@ public class Search {
     
     if (!dexes.isEmpty()) {
       dexes = "(" + dexes.substring(2) + ")";
-      if (!number.isEmpty()) {
+      if (number != null) {
         conn.update(String.format(Statements.SEARCH_DEX_INCLUDED_NUMBER,
             dexes, number));
       } else {
