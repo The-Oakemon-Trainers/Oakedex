@@ -253,7 +253,7 @@ public class Search {
       conn.update(String.format(Statements.SEARCH_DEX_NUMBER, number));
     }
     
-    return (int) conn.update(count);
+    return (int) conn.getResult(count);
   }
   
   public int filterExcludedDex(boolean johto_2, boolean johto_4,
@@ -289,9 +289,11 @@ public class Search {
     if (alola_ulaula_usum) dexes += ", 24";
     if (alola_poni_usum) dexes += ", 25";
     
+    dexes = "(" + dexes.substring(2) + ")";
+    
     conn.update(String.format(Statements.SEARCH_DEX_EXCLUDED, dexes));
     
-    return (int) conn.update(count);
+    return (int) conn.getResult(count);
   }
   
   public int filterForms(int method) {

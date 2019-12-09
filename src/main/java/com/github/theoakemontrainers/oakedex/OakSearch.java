@@ -697,23 +697,23 @@ public class OakSearch extends JFrame implements ActionListener {
 			
 			OakMain.search.resetSearch();
 			
-			if (txtName.getText() == null||txtName.getText().isEmpty());
-			else
+			if (!(txtName.getText() == null||txtName.getText().isEmpty())) {
 				OakMain.search.filterName(txtName.getText());
+			}
 			
-			if (txtAbility.getText() == null||txtAbility.getText().isEmpty());
-			else
+			if (!(txtAbility.getText() == null||txtAbility.getText().isEmpty()))			{
 				OakMain.search.filterAbilities(txtAbility.getText(), chkNormalAbil.isSelected(), chkHiddenAbil.isSelected());
+			}
 			
 			if (chkNormalType.isSelected() || chkFightingType.isSelected() || chkFlyingType.isSelected() || chkPoisonType.isSelected() || chkGroundType.isSelected() || chkRockType.isSelected() || chkBugType.isSelected() || chkGhostType.isSelected() || chkSteelType.isSelected() || chkFireType.isSelected() || chkWaterType.isSelected() || chkGrassType.isSelected() || chkElectricType.isSelected() || chkPsychicType.isSelected() || chkIceType.isSelected() || chkDragonType.isSelected() || chkDarkType.isSelected() || chkFairyType.isSelected())
 			{
 				OakMain.search.filterTypes(cmbType.getSelectedItem().hashCode(), chkNormalType.isSelected(), chkFightingType.isSelected(), chkFlyingType.isSelected(), chkPoisonType.isSelected(), chkGroundType.isSelected(), chkRockType.isSelected(), chkBugType.isSelected(), chkGhostType.isSelected(), chkSteelType.isSelected(), chkFireType.isSelected(), chkWaterType.isSelected(), chkGrassType.isSelected(), chkElectricType.isSelected(), chkPsychicType.isSelected(), chkIceType.isSelected(), chkDragonType.isSelected(), chkDarkType.isSelected(), chkFairyType.isSelected());
 			}
 			
-			if (cmbGender2 == null || cmbGender2.equals(""));
-			else
+			if (!(cmbGender2 == null || cmbGender2.equals(""))) {
 				OakMain.search.filterGender(cmbGender1.getSelectedItem().hashCode(), cmbGender2.getSelectedItem().hashCode());
-			
+			}
+
 			if (chkGen1.isSelected() || chkGen2.isSelected() || chkGen3.isSelected() || chkGen4.isSelected() || chkGen5.isSelected() || chkGen6.isSelected() || chkGen7.isSelected())
 			{
 				OakMain.search.filterGeneration(chkGen1.isSelected(), chkGen2.isSelected(), chkGen3.isSelected(), chkGen4.isSelected(), chkGen5.isSelected(), chkGen6.isSelected(), chkGen7.isSelected());
@@ -721,7 +721,12 @@ public class OakSearch extends JFrame implements ActionListener {
 			
 			if (txtNumber.getText().length() > 0 || chkIn1.isSelected() || chkIn2.isSelected() || chkIn3.isSelected() || chkIn4.isSelected() || chkIn5.isSelected() || chkIn6.isSelected() || chkIn7.isSelected() || chkIn8.isSelected() || chkIn9.isSelected() || chkIn11.isSelected() || chkIn12.isSelected() || chkIn13.isSelected() || chkIn14.isSelected() || chkIn15.isSelected() || chkIn16.isSelected() || chkIn17.isSelected() || chkIn18.isSelected() || chkIn19.isSelected() || chkIn20.isSelected() || chkIn21.isSelected() || chkIn22.isSelected() || chkIn23.isSelected())
 			{
-				int val = Integer.parseInt(txtNumber.getText());
+				Integer val = null;
+				try {
+					Integer.parseInt(txtNumber.getText());
+				} catch (NumberFormatException ex) {
+					// do nothing
+				}
 				OakMain.search.filterIncludedDex(val, chkIn1.isSelected(), chkIn2.isSelected(), chkIn3.isSelected(), chkIn4.isSelected(), chkIn5.isSelected(), chkIn6.isSelected(), chkIn7.isSelected(), chkIn8.isSelected(), chkIn9.isSelected(), chkIn11.isSelected(), chkIn12.isSelected(), chkIn13.isSelected(), chkIn14.isSelected(), chkIn15.isSelected(), chkIn16.isSelected(), chkIn17.isSelected(), chkIn18.isSelected(), chkIn19.isSelected(), chkIn20.isSelected(), chkIn21.isSelected(), chkIn22.isSelected(), chkIn23.isSelected());
 			}
 			
