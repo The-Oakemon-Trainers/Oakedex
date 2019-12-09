@@ -222,7 +222,7 @@ WHERE id NOT IN
     JOIN pokemon
       ON pokemon_forms.pokemon_id = pokemon.id
     JOIN pokemon_species
-      ON pokemon.species_id = pokemon_species
+      ON pokemon.species_id = pokemon_species.id
   WHERE pokemon_species.gender_rate BETWEEN ? AND ?);
 
 -- Search by generation
@@ -233,7 +233,7 @@ WHERE id NOT IN
     JOIN pokemon
       ON pokemon_forms.pokemon_id = pokemon.id
     JOIN pokemon_species
-      ON pokemon.species_id = pokemon_species
+      ON pokemon.species_id = pokemon_species.id
   WHERE pokemon_species.generation_id IN %s);
 
 -- Get results
