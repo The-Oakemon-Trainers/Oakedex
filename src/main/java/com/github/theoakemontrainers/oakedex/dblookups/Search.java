@@ -27,6 +27,7 @@ public class Search {
   private DBStatement searchTypesPrimarily;
   private DBStatement searchTypesSecondarily;
   private DBStatement searchTypesGetResults;
+  private DBStatement searchGenders;
   private DBStatement results;
   
   public Search(DBConnection c) {
@@ -50,6 +51,7 @@ public class Search {
     searchTypesSecondarily = c
         .prepare(Statements.SEARCH_TYPES_SECONDARILY);
     searchTypesGetResults = c.prepare(Statements.SEARCH_TYPES_GET_RESULTS);
+    searchGenders = c.prepare(Statements.SEARCH_GENDERS);
     results = c.prepare(Statements.SEARCH_EXECUTE);
   }
   
@@ -141,6 +143,41 @@ public class Search {
     
     conn.update(typeStatement);
     conn.update(searchTypesGetResults);
+    
+    return (int) conn.getResult(count);
+  }
+  
+  public int filterGender(int mode, int selection) {
+    if (selection == -1) {
+      conn.update(searchGenders, -1, -1);
+    } else {
+      int min = selection;
+      int max = selection;
+      
+      if (mode == 1) max = 8;
+      if (mode == 3) min = 0;
+      
+      conn.update(searchGenders, min, max);
+    }
+    
+    return (int) conn.getResult(count);
+  }
+  
+  public int filterGeneration(boolean first, boolean second, boolean third,
+      boolean fourth, boolean fifth, boolean sixth, boolean seventh) {
+    String gens = "";
+    
+    if (first) gens += ", 1";
+    if (second) gens += ", 2";
+    if (third) gens += ", 3";
+    if (fourth) gens += ", 4";
+    if (fifth) gens += ", 5";
+    if (sixth) gens += ", 6";
+    if (seventh) gens += ", 7";
+    
+    gens = "(" + gens.substring(2) + ")";
+    
+    conn.update(String.format(Statements.SEARCH_GENERATIONS, gens));
     
     return (int) conn.getResult(count);
   }
