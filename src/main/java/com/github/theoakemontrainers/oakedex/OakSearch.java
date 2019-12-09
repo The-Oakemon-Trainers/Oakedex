@@ -688,6 +688,15 @@ public class OakSearch extends JFrame implements ActionListener {
 				OakMain.search.filterTypes(cmbType.getSelectedItem().hashCode(), chkNormalType.isSelected(), chkFightingType.isSelected(), chkFlyingType.isSelected(), chkPoisonType.isSelected(), chkGroundType.isSelected(), chkRockType.isSelected(), chkBugType.isSelected(), chkGhostType.isSelected(), chkSteelType.isSelected(), chkFireType.isSelected(), chkWaterType.isSelected(), chkGrassType.isSelected(), chkElectricType.isSelected(), chkPsychicType.isSelected(), chkIceType.isSelected(), chkDragonType.isSelected(), chkDarkType.isSelected(), chkFairyType.isSelected());
 			}
 			
+			if (cmbGender2 == null || cmbGender2.equals(""));
+			else
+				OakMain.search.filterGender(cmbGender1.getSelectedItem().hashCode(), cmbGender2.getSelectedItem().hashCode());
+			
+			if (chkGen1.isSelected() || chkGen2.isSelected() || chkGen3.isSelected() || chkGen4.isSelected() || chkGen5.isSelected() || chkGen6.isSelected() || chkGen7.isSelected())
+			{
+				OakMain.search.filterGeneration(chkGen1.isSelected(), chkGen2.isSelected(), chkGen3.isSelected(), chkGen4.isSelected(), chkGen5.isSelected(), chkGen6.isSelected(), chkGen7.isSelected());
+			}
+			
 			//Testing ComboBox value 
 			//System.out.println(cmbGender2.getSelectedItem().hashCode());
 			
