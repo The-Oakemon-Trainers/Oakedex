@@ -675,11 +675,11 @@ public class OakSearch extends JFrame implements ActionListener {
 			
 			OakMain.search.resetSearch();
 			
-			if (txtName.getText() == ""||txtName.getText() == null);
+			if (txtName.getText() == null||txtName.getText().isEmpty());
 			else
 				OakMain.search.filterName(txtName.getText());
 			
-			if (txtAbility.getText() == ""||txtAbility.getText() == null);
+			if (txtAbility.getText() == null||txtAbility.getText().isEmpty());
 			else
 				OakMain.search.filterAbilities(txtAbility.getText(), chkNormalAbil.isSelected(), chkHiddenAbil.isSelected());
 			
