@@ -12,6 +12,7 @@ public class Search {
   private DBStatement reset;
   private DBStatement count;
   private DBStatement searchName;
+  private DBStatement searchAbilityReset;
   private DBStatement searchAbilityStart;
   private DBStatement searchAbilityNormal;
   private DBStatement searchAbilityHidden;
@@ -35,7 +36,8 @@ public class Search {
     reset = c.prepare(Statements.RESET_SEARCH);
     count = c.prepare(Statements.SEARCH_COUNT);
     searchName = c.prepare(Statements.SEARCH_NAMES);
-    searchAbilityStart = c.prepare(Statements.SEARCH_ABILITIES_RESET);
+    searchAbilityReset = c.prepare(Statements.SEARCH_ABILITIES_RESET);
+    searchAbilityStart = c.prepare(Statements.SEARCH_ABILITIES_GET);
     searchAbilityNormal = c.prepare(Statements.SEARCH_ABILITIES_NORMAL);
     searchAbilityHidden = c.prepare(Statements.SEARCH_ABILITIES_HIDDEN);
     searchAbilityFilter = c.prepare(Statements.SEARCH_ABILITIES_FILTER);
@@ -65,6 +67,8 @@ public class Search {
   }
   
   public int filterAbilities(String name, boolean normal, boolean hidden) {
+    conn.update(searchAbilityReset);
+    
     conn.update(searchAbilityStart,
         name.toLowerCase().replace('*', '%').replace('?', '_'));
     
