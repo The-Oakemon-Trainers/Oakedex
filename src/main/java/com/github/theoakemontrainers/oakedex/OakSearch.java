@@ -158,7 +158,7 @@ public class OakSearch extends JFrame implements ActionListener {
 	    		return displayMember.toString();
 	    	}
 	    	
-	    	public int getVal()
+	    	public int hashCode()
 	    	{
 	    		return valueMember;
 	    	}
@@ -684,10 +684,11 @@ public class OakSearch extends JFrame implements ActionListener {
 			
 			if (chkNormalType.isSelected() || chkFightingType.isSelected() || chkFlyingType.isSelected() || chkPoisonType.isSelected() || chkGroundType.isSelected() || chkRockType.isSelected() || chkBugType.isSelected() || chkGhostType.isSelected() || chkSteelType.isSelected() || chkFireType.isSelected() || chkWaterType.isSelected() || chkGrassType.isSelected() || chkElectricType.isSelected() || chkPsychicType.isSelected() || chkIceType.isSelected() || chkDragonType.isSelected() || chkDarkType.isSelected() || chkFairyType.isSelected())
 			{
-				//OakMain.search.filterTypes(cmbType.getSelectedIndex(), chkNormalType.isSelected(), chkFightingType.isSelected(), chkFlyingType.isSelected(), chkPoisonType.isSelected(), chkGroundType.isSelected(), chkRockType.isSelected(), chkBugType.isSelected(), chkGhostType.isSelected(), chkSteelType.isSelected(), chkFireType.isSelected(), chkWaterType.isSelected(), chkGrassType.isSelected(), chkElectricType.isSelected(), chkPsychicType.isSelected(), chkIceType.isSelected(), chkDragonType.isSelected(), chkDarkType.isSelected(), chkFairyType.isSelected());
+				OakMain.search.filterTypes(cmbType.getSelectedItem().hashCode(), chkNormalType.isSelected(), chkFightingType.isSelected(), chkFlyingType.isSelected(), chkPoisonType.isSelected(), chkGroundType.isSelected(), chkRockType.isSelected(), chkBugType.isSelected(), chkGhostType.isSelected(), chkSteelType.isSelected(), chkFireType.isSelected(), chkWaterType.isSelected(), chkGrassType.isSelected(), chkElectricType.isSelected(), chkPsychicType.isSelected(), chkIceType.isSelected(), chkDragonType.isSelected(), chkDarkType.isSelected(), chkFairyType.isSelected());
 			}
 			
-			System.out.println(cmbType.getSelectedIndex());
+			//Testing ComboBox value 
+			//System.out.println(cmbGender2.getSelectedItem().hashCode());
 			
 			OakMain.search.getResults();
 			
