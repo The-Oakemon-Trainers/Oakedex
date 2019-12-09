@@ -198,6 +198,94 @@ public class Search {
     return (int) conn.getResult(count);
   }
   
+  public int filterIncludedDex(String number, boolean national,
+      boolean johto_2, boolean johto_4, boolean hoenn_3, boolean hoenn_6,
+      boolean sinnoh_dp, boolean sinnoh_pt, boolean unova_bw1,
+      boolean unova_bw2, boolean kalos_coastal, boolean kalos_central,
+      boolean kalos_mountain, boolean alola_all_sm,
+      boolean alola_melemele_sm, boolean alola_akala_sm,
+      boolean alola_ulaula_sm, boolean alola_poni_sm,
+      boolean alola_all_usum, boolean alola_melemele_usum,
+      boolean alola_akala_usum, boolean alola_ulaula_usum,
+      boolean alola_poni_usum) {
+    String dexes = "";
+    
+    if (national) dexes += ", 1";
+    if (johto_2) dexes += ", 3";
+    if (johto_4) dexes += ", 7";
+    if (hoenn_3) dexes += ", 4";
+    if (hoenn_6) dexes += ", 15";
+    if (sinnoh_dp) dexes += ", 5";
+    if (sinnoh_pt) dexes += ", 6";
+    if (unova_bw1) dexes += ", 8";
+    if (unova_bw2) dexes += ", 9";
+    if (kalos_coastal) dexes += ", 13";
+    if (kalos_central) dexes += ", 12";
+    if (kalos_mountain) dexes += ", 14";
+    if (alola_all_sm) dexes += ", 16";
+    if (alola_melemele_sm) dexes += ", 17";
+    if (alola_akala_sm) dexes += ", 18";
+    if (alola_ulaula_sm) dexes += ", 19";
+    if (alola_poni_sm) dexes += ", 20";
+    if (alola_all_usum) dexes += ", 21";
+    if (alola_melemele_usum) dexes += ", 22";
+    if (alola_akala_usum) dexes += ", 23";
+    if (alola_ulaula_usum) dexes += ", 24";
+    if (alola_poni_usum) dexes += ", 25";
+    
+    if (!dexes.isEmpty()) {
+      dexes = "(" + dexes.substring(2) + ")";
+      if (!number.isEmpty()) {
+        conn.update(String.format(Statements.SEARCH_DEX_INCLUDED_NUMBER,
+            dexes, number));
+      } else {
+        conn.update(String.format(Statements.SEARCH_DEX_INCLUDED, dexes));
+      }
+    } else {
+      conn.update(String.format(Statements.SEARCH_DEX_NUMBER, number));
+    }
+    
+    return (int) conn.update(count);
+  }
+  
+  public int filterExcludedDex(boolean johto_2, boolean johto_4,
+      boolean hoenn_3, boolean hoenn_6, boolean sinnoh_dp,
+      boolean sinnoh_pt, boolean unova_bw1, boolean unova_bw2,
+      boolean kalos_coastal, boolean kalos_central, boolean kalos_mountain,
+      boolean alola_all_sm, boolean alola_melemele_sm,
+      boolean alola_akala_sm, boolean alola_ulaula_sm,
+      boolean alola_poni_sm, boolean alola_all_usum,
+      boolean alola_melemele_usum, boolean alola_akala_usum,
+      boolean alola_ulaula_usum, boolean alola_poni_usum) {
+    String dexes = "";
+    
+    if (johto_2) dexes += ", 3";
+    if (johto_4) dexes += ", 7";
+    if (hoenn_3) dexes += ", 4";
+    if (hoenn_6) dexes += ", 15";
+    if (sinnoh_dp) dexes += ", 5";
+    if (sinnoh_pt) dexes += ", 6";
+    if (unova_bw1) dexes += ", 8";
+    if (unova_bw2) dexes += ", 9";
+    if (kalos_coastal) dexes += ", 13";
+    if (kalos_central) dexes += ", 12";
+    if (kalos_mountain) dexes += ", 14";
+    if (alola_all_sm) dexes += ", 16";
+    if (alola_melemele_sm) dexes += ", 17";
+    if (alola_akala_sm) dexes += ", 18";
+    if (alola_ulaula_sm) dexes += ", 19";
+    if (alola_poni_sm) dexes += ", 20";
+    if (alola_all_usum) dexes += ", 21";
+    if (alola_melemele_usum) dexes += ", 22";
+    if (alola_akala_usum) dexes += ", 23";
+    if (alola_ulaula_usum) dexes += ", 24";
+    if (alola_poni_usum) dexes += ", 25";
+    
+    conn.update(String.format(Statements.SEARCH_DEX_EXCLUDED, dexes));
+    
+    return (int) conn.update(count);
+  }
+  
   public ArrayList<String> getResults() {
     ArrayList<HashMap<String, Object>> searchResults = conn.query(results);
     ArrayList<String> out = new ArrayList<>();

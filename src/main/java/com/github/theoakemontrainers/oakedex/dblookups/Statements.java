@@ -175,6 +175,39 @@ public class Statements {
       + "ON pokemon.species_id = pokemon_species.id\n"
       + "WHERE pokemon_species.generation_id IN %s);\n";
   
+  public static final String SEARCH_DEX_INCLUDED = "DELETE FROM search_results\n"
+      + "WHERE id NOT IN\n" + "(SELECT\n" + "pokemon_forms.id\n"
+      + "FROM pokemon_dex_numbers\n" + "JOIN pokemon\n"
+      + "ON pokemon_dex_numbers.species_id = pokemon.species_id\n"
+      + "JOIN pokemon_forms\n"
+      + "ON pokemon.id = pokemon_forms.pokemon_id\n"
+      + "WHERE pokemon_dex_numbers.pokedex_id IN %s);\n";
+  
+  public static final String SEARCH_DEX_INCLUDED_NUMBER = "DELETE FROM search_results\n"
+      + "WHERE id NOT IN\n" + "(SELECT\n" + "pokemon_forms.id\n"
+      + "FROM pokemon_dex_numbers\n" + "JOIN pokemon\n"
+      + "ON pokemon_dex_numbers.species_id = pokemon.species_id\n"
+      + "JOIN pokemon_forms\n"
+      + "ON pokemon.id = pokemon_forms.pokemon_id\n"
+      + "WHERE pokemon_dex_numbers.pokedex_id IN %s\n"
+      + "AND pokemon_dex_numbers.pokedex_number = %s);";
+  
+  public static final String SEARCH_DEX_NUMBER = "DELETE FROM search_results\n"
+      + "WHERE id NOT IN\n" + "(SELECT\n" + "pokemon_forms.id\n"
+      + "FROM pokemon_dex_numbers\n" + "JOIN pokemon\n"
+      + "ON pokemon_dex_numbers.species_id = pokemon.species_id\n"
+      + "JOIN pokemon_forms\n"
+      + "ON pokemon.id = pokemon_forms.pokemon_id\n"
+      + "WHERE pokemon_dex_numbers.pokedex_number = %s);";
+  
+  public static final String SEARCH_DEX_EXCLUDED = "DELETE FROM search_results\n"
+      + "WHERE id IN\n" + "(SELECT\n" + "pokemon_forms.id\n"
+      + "FROM pokemon_dex_numbers\n" + "JOIN pokemon\n"
+      + "ON pokemon_dex_numbers.species_id = pokemon.species_id\n"
+      + "JOIN pokemon_forms\n"
+      + "ON pokemon.id = pokemon_forms.pokemon_id\n"
+      + "WHERE pokemon_dex_numbers.pokedex_id IN %s);\n";
+  
   public static final String SEARCH_EXECUTE = "SELECT\n"
       + "pokemon_forms.id,\n" + "pokemon_species_names.name,\n"
       + "pokemon_form_names.form_name\n" + "FROM pokemon_species_names\n"

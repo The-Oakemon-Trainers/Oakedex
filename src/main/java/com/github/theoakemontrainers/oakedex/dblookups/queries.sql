@@ -238,8 +238,54 @@ WHERE id NOT IN
       ON pokemon.species_id = pokemon_species.id
   WHERE pokemon_species.generation_id IN %s);
 
--- Search by moves
+-- Search by Pokédex Numbers (included)
+DELETE FROM search_results
+WHERE id NOT IN
+  (SELECT
+    pokemon_forms.id
+  FROM pokemon_dex_numbers
+    JOIN pokemon
+      ON pokemon_dex_numbers.species_id = pokemon.species_id
+    JOIN pokemon_forms
+      ON pokemon.id = pokemon_forms.pokemon_id
+  WHERE pokemon_dex_numbers.pokedex_id IN dex_number_search);
 
+-- Search by Pokédex Numbers (included with specific number)
+DELETE FROM search_results
+WHERE id NOT IN
+  (SELECT
+    pokemon_forms.id
+  FROM pokemon_dex_numbers
+    JOIN pokemon
+      ON pokemon_dex_numbers.species_id = pokemon.species_id
+    JOIN pokemon_forms
+      ON pokemon.id = pokemon_forms.pokemon_id
+  WHERE pokemon_dex_numbers.pokedex_id IN dex_number_search
+    AND pokemon_dex_numbers.pokedex_number = ?);
+
+-- Search by Pokédex Numbers (specific number only)
+DELETE FROM search_results
+WHERE id NOT IN
+  (SELECT
+    pokemon_forms.id
+  FROM pokemon_dex_numbers
+    JOIN pokemon
+      ON pokemon_dex_numbers.species_id = pokemon.species_id
+    JOIN pokemon_forms
+      ON pokemon.id = pokemon_forms.pokemon_id
+  WHERE pokemon_dex_numbers.pokedex_number = ?);
+
+-- Search by Pokédex Numbers (excluded)
+DELETE FROM search_results
+WHERE id IN
+  (SELECT
+    pokemon_forms.id
+  FROM pokemon_dex_numbers
+    JOIN pokemon
+      ON pokemon_dex_numbers.species_id = pokemon.species_id
+    JOIN pokemon_forms
+      ON pokemon.id = pokemon_forms.pokemon_id
+  WHERE pokemon_dex_numbers.pokedex_id IN dex_number_search);
 
 -- Get results
 SELECT
