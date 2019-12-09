@@ -93,8 +93,10 @@ public class DBTest {
   
   public static void test4() {
     search.resetSearch();
-    search.filterAbilities("blaze", true, true);
-    deepPrint(search.getResults());
+    search.filterName("*eon");
+    // search.filterTypes();
+    ArrayList<String> list = search.getResults();
+    deepPrint(list);
   }
   
   public static void deepPrint(Object obj) {
