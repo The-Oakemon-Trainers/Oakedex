@@ -225,6 +225,17 @@ WHERE id NOT IN
       ON pokemon.species_id = pokemon_species
   WHERE pokemon_species.gender_rate BETWEEN ? AND ?);
 
+-- Search by generation
+DELETE FROM search_results
+WHERE id NOT IN
+  (SELECT pokemon_forms.id
+  FROM pokemon_forms
+    JOIN pokemon
+      ON pokemon_forms.pokemon_id = pokemon.id
+    JOIN pokemon_species
+      ON pokemon.species_id = pokemon_species
+  WHERE pokemon_species.generation_id IN %s);
+
 -- Get results
 SELECT
   pokemon_forms.id,

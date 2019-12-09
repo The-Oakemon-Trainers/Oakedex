@@ -163,6 +163,25 @@ public class Search {
     return (int) conn.getResult(count);
   }
   
+  public int filterGeneration(boolean first, boolean second, boolean third,
+      boolean fourth, boolean fifth, boolean sixth, boolean seventh) {
+    String gens = "";
+    
+    if (first) gens += ", 1";
+    if (second) gens += ", 2";
+    if (third) gens += ", 3";
+    if (fourth) gens += ", 4";
+    if (fifth) gens += ", 5";
+    if (sixth) gens += ", 6";
+    if (seventh) gens += ", 7";
+    
+    gens = "(" + gens.substring(2) + ")";
+    
+    conn.update(String.format(Statements.SEARCH_GENERATIONS, gens));
+    
+    return (int) conn.getResult(count);
+  }
+  
   public ArrayList<String> getResults() {
     ArrayList<HashMap<String, Object>> searchResults = conn.query(results);
     ArrayList<String> out = new ArrayList<>();

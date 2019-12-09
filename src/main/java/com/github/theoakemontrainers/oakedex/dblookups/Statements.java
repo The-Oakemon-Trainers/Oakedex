@@ -164,6 +164,14 @@ public class Statements {
       + "ON pokemon.species_id = pokemon_species\n"
       + "WHERE pokemon_species.gender_rate BETWEEN ? AND ?);\n";
   
+  public static final String SEARCH_GENERATIONS = "DELETE FROM search_results\n"
+      + "WHERE id NOT IN\n" + "(SELECT pokemon_forms.id\n"
+      + "FROM pokemon_forms\n" + "JOIN pokemon\n"
+      + "ON pokemon_forms.pokemon_id = pokemon.id\n"
+      + "JOIN pokemon_species\n"
+      + "ON pokemon.species_id = pokemon_species\n"
+      + "WHERE pokemon_species.generation_id IN %s);\n";
+  
   public static final String SEARCH_EXECUTE = "SELECT\n"
       + "pokemon_forms.id,\n" + "pokemon_species_names.name,\n"
       + "pokemon_form_names.form_name\n" + "FROM pokemon_species_names\n"
