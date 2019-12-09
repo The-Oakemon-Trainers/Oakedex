@@ -10,14 +10,17 @@ public class Search {
   private DBConnection conn;
   
   private DBStatement reset;
+  private DBStatement start;
   private DBStatement count;
   private DBStatement searchName;
-  private DBStatement searchAbilityReset;
+  private DBStatement searchAbilityReset1;
+  private DBStatement searchAbilityReset2;
   private DBStatement searchAbilityStart;
   private DBStatement searchAbilityNormal;
   private DBStatement searchAbilityHidden;
   private DBStatement searchAbilityFilter;
-  private DBStatement searchTypesStart;
+  private DBStatement searchTypesStart1;
+  private DBStatement searchTypesStart2;
   private DBStatement searchTypesAtLeast;
   private DBStatement searchTypesOneOf;
   private DBStatement searchTypesOnly;
@@ -33,15 +36,18 @@ public class Search {
   
   public Search(DBConnection c) {
     conn = c;
-    reset = c.prepare(Statements.RESET_SEARCH);
+    reset = c.prepare(Statements.CLEAR_SEARCH);
+    start = c.prepare(Statements.START_SEARCH);
     count = c.prepare(Statements.SEARCH_COUNT);
     searchName = c.prepare(Statements.SEARCH_NAMES);
-    searchAbilityReset = c.prepare(Statements.SEARCH_ABILITIES_RESET);
+    searchAbilityReset1 = c.prepare(Statements.SEARCH_ABILITIES_RESET_1);
+    searchAbilityReset2 = c.prepare(Statements.SEARCH_ABILITIES_RESET_2);
     searchAbilityStart = c.prepare(Statements.SEARCH_ABILITIES_GET);
     searchAbilityNormal = c.prepare(Statements.SEARCH_ABILITIES_NORMAL);
     searchAbilityHidden = c.prepare(Statements.SEARCH_ABILITIES_HIDDEN);
     searchAbilityFilter = c.prepare(Statements.SEARCH_ABILITIES_FILTER);
-    searchTypesStart = c.prepare(Statements.SEARCH_TYPES_START);
+    searchTypesStart1 = c.prepare(Statements.SEARCH_TYPES_START_1);
+    searchTypesStart2 = c.prepare(Statements.SEARCH_TYPES_START_2);
     searchTypesAtLeast = c.prepare(Statements.SEARCH_TYPES_AT_LEAST);
     searchTypesOneOf = c.prepare(Statements.SEARCH_TYPES_ONE_OF);
     searchTypesOnly = c.prepare(Statements.SEARCH_TYPES_ONLY);
@@ -59,15 +65,19 @@ public class Search {
   
   public void resetSearch() {
     conn.update(reset);
+    conn.update(start);
   }
   
   public int filterName(String name) {
-    conn.update(searchName, name);
+    String newName = name.replaceAll("[.,:\\-'\"%_]", "").replace('?', '_')
+        .replace('*', '%').toLowerCase();
+    conn.update(searchName, newName);
     return (int) conn.getResult(count);
   }
   
   public int filterAbilities(String name, boolean normal, boolean hidden) {
-    conn.update(searchAbilityReset);
+    conn.update(searchAbilityReset1);
+    conn.update(searchAbilityReset2);
     
     conn.update(searchAbilityStart,
         name.toLowerCase().replace('*', '%').replace('?', '_'));
@@ -89,7 +99,8 @@ public class Search {
       boolean bug, boolean ghost, boolean steel, boolean fire,
       boolean water, boolean grass, boolean electric, boolean psychic,
       boolean ice, boolean dragon, boolean dark, boolean fairy) {
-    conn.update(searchTypesStart);
+    conn.update(searchTypesStart1);
+    conn.update(searchTypesStart2);
     
     String insertion = "";
     if (normal) insertion += ", (1)";

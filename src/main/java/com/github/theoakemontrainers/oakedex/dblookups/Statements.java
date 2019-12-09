@@ -74,8 +74,10 @@ public class Statements {
       + "ON pokemon.id = pokemon_forms.pokemon_id\n"
       + "WHERE pokemon_forms.pokemon_id = ?;";
   
-  public static final String RESET_SEARCH = "DELETE FROM search_results;\n"
-      + "INSERT INTO search_results\n" + "SELECT id FROM pokemon_forms;\n";
+  public static final String CLEAR_SEARCH = "DELETE FROM search_results;\n";
+  
+  public static final String START_SEARCH = "INSERT INTO search_results\n"
+      + "SELECT id FROM pokemon_forms;\n";
   
   public static final String SEARCH_COUNT = "SELECT count(id) FROM search_results;";
   
@@ -85,8 +87,8 @@ public class Statements {
       + "on pokemon_forms.pokemon_id = pokemon_aliases.pokemon_id\n"
       + "where alias like ?);\n";
   
-  public static final String SEARCH_ABILITIES_RESET = "DELETE FROM search_abilities;\n"
-      + "DELETE FROM search_ability_results;\n";
+  public static final String SEARCH_ABILITIES_RESET_1 = "DELETE FROM search_abilities;\n";
+  public static final String SEARCH_ABILITIES_RESET_2 = "DELETE FROM search_ability_results;\n";
   
   public static final String SEARCH_ABILITIES_GET = "INSERT INTO search_abilities\n"
       + "SELECT ability_id FROM ability_names\n"
@@ -106,8 +108,8 @@ public class Statements {
   public static final String SEARCH_ABILITIES_FILTER = "DELETE FROM search_results\n"
       + "WHERE id NOT IN search_ability_results;\n";
   
-  public static final String SEARCH_TYPES_START = "DELETE FROM search_types;\n"
-      + "DELETE FROM search_type_results;\n";
+  public static final String SEARCH_TYPES_START_1 = "DELETE FROM search_types;\n";
+  public static final String SEARCH_TYPES_START_2 = "DELETE FROM search_type_results;\n";
   
   public static final String SEARCH_TYPES_AT_LEAST = "INSERT INTO search_type_results\n"
       + "SELECT pokemon_id\n" + "FROM pokemon_types\n"
