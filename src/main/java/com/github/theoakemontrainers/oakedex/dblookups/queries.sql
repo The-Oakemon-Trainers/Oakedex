@@ -287,6 +287,37 @@ WHERE id IN
       ON pokemon.id = pokemon_forms.pokemon_id
   WHERE pokemon_dex_numbers.pokedex_id IN dex_number_search);
 
+-- Form filter: Defaults only
+DELETE FROM search_results
+WHERE id IN
+  (SELECT id
+  FROM pokemon_forms
+  WHERE is_default = 0
+    OR pokemon_id IN
+      (SELECT id
+      FROM pokemon
+      WHERE is_default = 0));
+
+-- Form filter: Search all, return defaults only
+UPDATE search_results
+SET id = 
+  (SELECT species_id FROM pokemon
+  WHERE pokemon.id =
+    (SELECT pokemon_id FROM pokemon_forms
+    WHERE pokemon_forms.id = search_results.id));
+
+-- Form filter: Search all, return one form only
+DELETE FROM search_results
+WHERE id NOT IN
+  (SELECT min(pokemon_forms.id)
+  FROM pokemon_forms
+    JOIN pokemon
+      ON pokemon_forms.pokemon_id = pokemon.id
+    JOIN pokemon_species
+      ON pokemon.species_id = pokemon_species.id
+  WHERE pokemon_forms.id IN search_results
+  GROUP BY pokemon_species.id);
+
 -- Get results
 SELECT
   pokemon_forms.id,

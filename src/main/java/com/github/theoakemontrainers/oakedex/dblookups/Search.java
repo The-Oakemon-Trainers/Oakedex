@@ -32,6 +32,9 @@ public class Search {
   private DBStatement searchTypesSecondarily;
   private DBStatement searchTypesGetResults;
   private DBStatement searchGenders;
+  private DBStatement searchFormsDefaultOnly;
+  private DBStatement searchFormsReturnDefault;
+  private DBStatement searchFormsReturnOne;
   private DBStatement results;
   
   public Search(DBConnection c) {
@@ -60,6 +63,11 @@ public class Search {
         .prepare(Statements.SEARCH_TYPES_SECONDARILY);
     searchTypesGetResults = c.prepare(Statements.SEARCH_TYPES_GET_RESULTS);
     searchGenders = c.prepare(Statements.SEARCH_GENDERS);
+    searchFormsDefaultOnly = c
+        .prepare(Statements.SEARCH_FORMS_DEFAULT_ONLY);
+    searchFormsReturnDefault = c
+        .prepare(Statements.SEARCH_FORMS_RETURN_DEFAULT);
+    searchFormsReturnOne = c.prepare(Statements.SEARCH_FORMS_RETURN_ONE);
     results = c.prepare(Statements.SEARCH_EXECUTE);
   }
   
@@ -282,6 +290,18 @@ public class Search {
     if (alola_poni_usum) dexes += ", 25";
     
     conn.update(String.format(Statements.SEARCH_DEX_EXCLUDED, dexes));
+    
+    return (int) conn.update(count);
+  }
+  
+  public int filterForms(int method) {
+    if (method == 1) {
+      conn.update(searchFormsDefaultOnly);
+    } else if (method == 2) {
+      conn.update(searchFormsReturnDefault);
+    } else if (method == 3) {
+      conn.update(searchFormsReturnOne);
+    }
     
     return (int) conn.update(count);
   }

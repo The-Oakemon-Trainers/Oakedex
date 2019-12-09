@@ -208,6 +208,25 @@ public class Statements {
       + "ON pokemon.id = pokemon_forms.pokemon_id\n"
       + "WHERE pokemon_dex_numbers.pokedex_id IN %s);\n";
   
+  public static final String SEARCH_FORMS_DEFAULT_ONLY = "DELETE FROM search_results\n"
+      + "WHERE id IN\n" + "(SELECT id\n" + "FROM pokemon_forms\n"
+      + "WHERE is_default = 0\n" + "OR pokemon_id IN\n" + "(SELECT id\n"
+      + "FROM pokemon\n" + "WHERE is_default = 0));\n";
+  
+  public static final String SEARCH_FORMS_RETURN_DEFAULT = "UPDATE search_results\n"
+      + "SET id =\n" + "(SELECT species_id FROM pokemon\n"
+      + "WHERE pokemon.id =\n" + "(SELECT pokemon_id FROM pokemon_forms\n"
+      + "WHERE pokemon_forms.id = search_results.id));\n";
+  
+  public static final String SEARCH_FORMS_RETURN_ONE = "DELETE FROM search_results\n"
+      + "WHERE id NOT IN\n" + "(SELECT min(pokemon_forms.id)\n"
+      + "FROM pokemon_forms\n" + "JOIN pokemon\n"
+      + "ON pokemon_forms.pokemon_id = pokemon.id\n"
+      + "JOIN pokemon_species\n"
+      + "ON pokemon.species_id = pokemon_species.id\n"
+      + "WHERE pokemon_forms.id IN search_results\n"
+      + "GROUP BY pokemon_species.id);\n";
+  
   public static final String SEARCH_EXECUTE = "SELECT\n"
       + "pokemon_forms.id,\n" + "pokemon_species_names.name,\n"
       + "pokemon_form_names.form_name\n" + "FROM pokemon_species_names\n"
