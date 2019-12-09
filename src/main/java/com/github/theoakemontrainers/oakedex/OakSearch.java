@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 import javax.imageio.ImageIO;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.text.NumberFormat;
 
@@ -690,11 +691,17 @@ public class OakSearch extends JFrame implements ActionListener {
 			//Testing ComboBox value 
 			//System.out.println(cmbGender2.getSelectedItem().hashCode());
 			
-			OakMain.search.getResults();
-			
-			
 			dispose();
-			new OakResults().setVisible(true);
+			OakResults resultsPage = new OakResults();
+			
+			ArrayList<String> list = OakMain.search.getResults();
+			System.out.println("test");
+			for (int i = 0; i < list.size(); i++)
+			{
+				resultsPage.addToResults(list.get(i));
+			}
+			
+			resultsPage.setVisible(true);
 		}
 	}
 	
