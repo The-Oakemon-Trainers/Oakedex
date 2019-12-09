@@ -420,7 +420,12 @@ public class OakSearch extends JFrame implements ActionListener {
 	    col2EmptySpace();
 	    
 	    col2.add(new JLabel("Form Searching:", SwingConstants.RIGHT));
-	    cmbForm = new JComboBox();
+	    cmbForm = new JComboBox<Option>();
+	    cmbForm.addItem(new Option("Only search default forms", 1));
+	    cmbForm.addItem(new Option("Search all, return only defaults", 2));
+	    cmbForm.addItem(new Option("Return only one form", 3));
+	    cmbForm.addItem(new Option("Return all matching forms", 4));
+	    cmbForm.setSelectedIndex(3);
 	    col2.add(cmbForm);
 	    col2.add(new JLabel());
 	    
