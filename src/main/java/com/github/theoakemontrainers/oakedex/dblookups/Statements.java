@@ -161,7 +161,7 @@ public class Statements {
       + "FROM pokemon_forms\n" + "JOIN pokemon\n"
       + "ON pokemon_forms.pokemon_id = pokemon.id\n"
       + "JOIN pokemon_species\n"
-      + "ON pokemon.species_id = pokemon_species\n"
+      + "ON pokemon.species_id = pokemon_species.id\n"
       + "WHERE pokemon_species.gender_rate BETWEEN ? AND ?);\n";
   
   public static final String SEARCH_GENERATIONS = "DELETE FROM search_results\n"
@@ -169,7 +169,7 @@ public class Statements {
       + "FROM pokemon_forms\n" + "JOIN pokemon\n"
       + "ON pokemon_forms.pokemon_id = pokemon.id\n"
       + "JOIN pokemon_species\n"
-      + "ON pokemon.species_id = pokemon_species\n"
+      + "ON pokemon.species_id = pokemon_species.id\n"
       + "WHERE pokemon_species.generation_id IN %s);\n";
   
   public static final String SEARCH_EXECUTE = "SELECT\n"
