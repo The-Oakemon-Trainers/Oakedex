@@ -65,7 +65,8 @@ public class Search {
   }
   
   public int filterAbilities(String name, boolean normal, boolean hidden) {
-    conn.update(searchAbilityStart, name.toLowerCase());
+    conn.update(searchAbilityStart,
+        name.toLowerCase().replace('*', '%').replace('?', '_'));
     
     if (normal || !hidden) {
       conn.update(searchAbilityNormal);

@@ -114,7 +114,7 @@ DELETE FROM search_abilities;
 INSERT INTO search_abilities
 SELECT ability_id FROM ability_names
 WHERE local_language_id = 9
-  AND lower(name) LIKE 'blaze';
+  AND lower(name) LIKE ?;
 DELETE FROM search_ability_results;
 
 -- Search by ability (normal)
