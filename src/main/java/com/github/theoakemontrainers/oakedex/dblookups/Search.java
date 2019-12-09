@@ -305,7 +305,7 @@ public class Search {
       conn.update(searchFormsReturnOne);
     }
     
-    return (int) conn.update(count);
+    return (int) conn.getResult(count);
   }
   
   public ArrayList<String> getResults() {

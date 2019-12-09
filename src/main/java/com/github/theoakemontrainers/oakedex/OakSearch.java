@@ -737,6 +737,8 @@ public class OakSearch extends JFrame implements ActionListener {
 			
 			//Testing ComboBox value 
 			//System.out.println(cmbGender2.getSelectedItem().hashCode());
+
+			OakMain.search.filterForms(cmbForm.getSelectedItem().hashCode());
 			
 			dispose();
 			OakResults resultsPage = new OakResults();
